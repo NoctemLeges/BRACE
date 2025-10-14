@@ -10,41 +10,54 @@ MACHINE_IP=$(hostname -I | awk '{print $1}')
 #DHCP Server Check
 #Only tested for isc-dhcp-server
 #This check only works if this script is ran on the router or the dhcp server.
+if [ -f "VersionInfo.txt" ]; then
+	rm VersionInfo.txt
+fi
+touch VersionInfo.txt
+
 if [ "$(systemctl list-unit-files | grep dhcp-server | wc -l)" -gt 0 ]; then
 	VERSION="$(dhcpd --version 2>&1)"
-	echo "DHCP Server: $VERSION"
+	echo "dhcpd: $VERSION" >> VersionInfo.txt
 else
-	echo "DHCP SERVER NOT FOUND"
+	echo "dhcpd NOT FOUND"
 fi
 
 #DNS Version Check
-echo "DNS Server: $(sudo nmap -sV -sU -p 53 $GATEWAY_IP | grep 53/udp | tr -s ' ' | cut -d ' ' -f4,5)"
+if [ "$(sudo nmap -sV -sU -p 53 $GATEWAY_IP | grep 53/udp | tr -s ' ' | cut -d ' ' -f4,5)" ]; then
+	echo "DNS Server: $(sudo nmap -sV -sU -p 53 $GATEWAY_IP | grep 53/udp | tr -s ' ' | cut -d ' ' -f4,5)" >> VersionInfo.txt
+else
+	echo "DNS Server NOT FOUND"
+fi
 
 #Web Server Version Check
-echo "Web Server: $(nmap -sV -Pn -p 80 $MACHINE_IP | grep 80/tcp | tr -s ' ' | cut -d ' ' -f4,5,6)"
+if [ "$(nmap -sV -Pn -p 80 $MACHINE_IP | grep 80/tcp | tr -s ' ' | cut -d ' ' -f4,5,6)" ]; then
+	echo "Web Server: $(nmap -sV -Pn -p 80 $MACHINE_IP | grep 80/tcp | tr -s ' ' | cut -d ' ' -f4,5,6)" >> VersionInfo.txt
+else
+	echo "Web Server NOT FOUND"
+fi
 
 #OpenVPN Version Check
 if [ "$(systemctl list-unit-files | grep openvpn | wc -l)" -gt 0 ]; then
 	VERSION="$(openvpn --version | head -n 1 | tr -s ' ' | cut -d ' ' -f2)"
-	echo "OPENVPN: $VERSION"
+	echo "openvpn: $VERSION" >> VersionInfo.txt
 else
-	echo "NOT AN OPENVPN CLIENT"
+	echo "NOT AN openvpn CLIENT"
 fi
 
 #MySQL Version Check
 if [ "$(systemctl list-unit-files | grep mysql | wc -l)" -gt 0 ]; then
 	VERSION="$(mysql --version | awk '{print $3}')"
-	echo "MySQL: $VERSION"
+	echo "mysql: $VERSION" >> VersionInfo.txt
 else
-	echo "NOT A MYSQL SERVER"
+	echo "NOT A mysql SERVER"
 fi
 
 #SSH Version Check
 if [ "$(systemctl list-unit-files | grep ssh | wc -l)" -gt 0 ]; then
 	VERSION="$(ssh -V 2>&1 | awk '{print $1,$2}' | tr -d ',')"
-	echo "SSH: $VERSION"
+	echo "ssh: $VERSION" >> VersionInfo.txt
 else
-	echo "NOT AN SSH SERVER"
+	echo "NOT AN ssh SERVER"
 fi
 
 #SSH Version Check with nmap (Not Reliable)
@@ -53,9 +66,9 @@ echo "SSH (nmap): $(nmap -sV -Pn -p 22 $MACHINE_IP | grep 22/tcp | tr -s ' ' | c
 #Postfix SMTP Version Check
 if [ "$(systemctl list-unit-files | grep postfix | wc -l)" -gt 0 ]; then
 	VERSION="$(postconf -d | grep mail_version | head -n 1 | awk '{print $3}')"
-	echo "SMTP (Postfix): $VERSION"
+	echo "postfix: $VERSION" >> VersionInfo.txt
 else
-	echo "NOT AN SMTP SERVER"
+	echo "NOT AN postfix SERVER"
 fi
 
 #SMTP (Postfix) Version Check with nmap (Not Reliable)
