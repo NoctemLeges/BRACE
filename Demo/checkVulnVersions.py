@@ -2,12 +2,35 @@ import requests
 import json
 import collections
 def readVersionInfo(fileName:str):
+    """
+    Read version information from a file.
+
+    Args:
+        fileName: The path to the file containing version information.
+                  Each line should contain a product identifier, e.g. "vendor:product:version".
+
+    Returns:
+        A list of strings, each representing one line from the file.
+    """
+
     infos = list()
     with open(fileName, "r") as f:
             infos = f.readlines()
     return infos
 
 def checkVulnVersion(infos:list):   # Try to identify each product as vendor:product string instead of just product
+
+    """
+    Check each product version against NVD CVE database for known vulnerabilities.
+
+    Args:
+        infos: A list of version strings in the format "vendor:product:version".
+
+    Returns:
+        vuln_count_dict: An OrderedDict mapping each product string (vendor:product:version)
+                         to the number of vulnerabilities found.
+    """
+
     cve_api = "https://services.nvd.nist.gov/rest/json/cves/2.0?virtualMatchString=cpe:2.3:*:"
     vuln_count_dict = collections.OrderedDict()
     for info in infos:
@@ -28,6 +51,17 @@ def checkVulnVersion(infos:list):   # Try to identify each product as vendor:pro
     return vuln_count_dict
 
 def updateToLatestVersion(product:str):
+    """
+    Retrieve the latest available version of a given product from the NVD CPE API.
+
+    Args:
+        product: The product string in the format "vendor:product:version".
+
+    Returns:
+        updated_product: A string in the format "vendor:product:latest_version"
+                         representing the newest version found for the product.
+    """
+
     cpe_api = "https://services.nvd.nist.gov/rest/json/cpes/2.0?cpeMatchString=cpe:2.3:a:"
     url = cpe_api + product.split(':')[0] + ":" + product.split(':')[1]
     json_response = json.loads(requests.get(url).text)
@@ -35,9 +69,25 @@ def updateToLatestVersion(product:str):
     return updated_product
     
 
-def retrieveLatestVersion(vulnCountDict:dict):
+def retrieveLatestVersion(vulnCountDict:dict, filename:str):
+    """
+    Compare current product versions with latest available versions and optionally update the file.
+
+    Args:
+        vulnCountDict: A dictionary mapping "vendor:product:version" to the number of vulnerabilities found.
+        filename: The path to the version info file to read from and/or update.
+
+    Behavior:
+        - Prints a summary of vulnerabilities per product.
+        - Prints the latest version for each product.
+        - Prompts the user whether to update the specified version info file.
+        - If confirmed, updates the file with the latest versions.
+
+    Returns:
+        None
+    """
+
     updated_product_list = list()
-    filename = "VersionInfo.txt"
     for product in vulnCountDict.keys():
         if vulnCountDict[product] > 0:
             updated_product_list.append(updateToLatestVersion(product) + "\n")
@@ -59,4 +109,4 @@ def retrieveLatestVersion(vulnCountDict:dict):
         f.write("".join(updated_product_list))
     print("\x1b[38;2;000;225;000m[#]File has been updated! Please check.\x1b[0m")
 
-retrieveLatestVersion(checkVulnVersion(readVersionInfo("VersionInfo.txt")))
+# retrieveLatestVersion(checkVulnVersion(readVersionInfo("VersionInfo.txt")))
