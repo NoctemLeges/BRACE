@@ -1,0 +1,181 @@
+{
+    "openvpn:openvpn:2.6.3": {
+        "Product": "openvpn:openvpn:2.6.3",
+        "CVEs": [
+            {
+                "CVE_ID": "CVE-2023-46849",
+                "Description": "Using the --fragment option in certain configuration setups OpenVPN version 2.6.0 to 2.6.6 allows an attacker to trigger a divide by zero behaviour which could cause an application crash, leading to a denial of service."
+            },
+            {
+                "CVE_ID": "CVE-2023-46850",
+                "Description": "Use after free in OpenVPN version 2.6.0 to 2.6.6 may lead to undefined behavoir, leaking memory buffers or remote execution when sending network buffers to a remote peer."
+            },
+            {
+                "CVE_ID": "CVE-2024-24974",
+                "Description": "The interactive service in OpenVPN 2.6.9 and earlier allows the OpenVPN service pipe to be accessed remotely, which allows a remote attacker to interact with the privileged OpenVPN interactive service."
+            },
+            {
+                "CVE_ID": "CVE-2024-27459",
+                "Description": "The interactive service in OpenVPN 2.6.9 and earlier allows an attacker to send data causing a stack overflow which can be used to execute arbitrary code with more privileges."
+            },
+            {
+                "CVE_ID": "CVE-2024-27903",
+                "Description": "OpenVPN plug-ins on Windows with OpenVPN 2.6.9 and earlier could be loaded from any directory, which allows an attacker to load an arbitrary plug-in which can be used to interact with the privileged OpenVPN interactive service."
+            },
+            {
+                "CVE_ID": "CVE-2024-28882",
+                "Description": "OpenVPN from 2.6.0 through 2.6.10 in a server role accepts multiple exit notifications from authenticated clients which will extend the validity of a closing session"
+            },
+            {
+                "CVE_ID": "CVE-2024-5594",
+                "Description": "OpenVPN before 2.6.11 does not santize PUSH_REPLY messages properly which an attacker controlling the server can use to inject unexpected arbitrary data ending up in client logs."
+            },
+            {
+                "CVE_ID": "CVE-2025-2704",
+                "Description": "OpenVPN version 2.6.1 through 2.6.13 in server mode using TLS-crypt-v2 allows remote attackers to trigger a denial of service by corrupting and replaying network packets in the early handshake phase"
+            },
+            {
+                "CVE_ID": "CVE-2024-4877",
+                "Description": "OpenVPN version 2.4.0 through 2.6.10 on Windows allows an external, lesser privileged process to create a named pipe which the OpenVPN GUI component would connect to allowing it to escalate its privileges"
+            },
+            {
+                "CVE_ID": "CVE-2025-13751",
+                "Description": "Interactive service agent in OpenVPN version 2.5.0 through 2.6.16 and 2.7_alpha1 through 2.7_rc2 on Windows allows a local authenticated user to connect to the service and trigger an error causing a local denial of service."
+            },
+            {
+                "CVE_ID": "CVE-2025-13086",
+                "Description": "Improper validation of source IP addresses in OpenVPN version 2.6.0 through 2.6.15 and 2.7_alpha1 through 2.7_rc1 allows an attacker to open a session from a different IP address which did not initiate the connection resulting in a denial of service for the originating client"
+            }
+        ]
+    },
+    "f5:nginx:0.5.6": {
+        "Product": "f5:nginx:0.5.6",
+        "CVEs": [
+            {
+                "CVE_ID": "CVE-2009-2629",
+                "Description": "Buffer underflow in src/http/ngx_http_parse.c in nginx 0.1.0 through 0.5.37, 0.6.x before 0.6.39, 0.7.x before 0.7.62, and 0.8.x before 0.8.15 allows remote attackers to execute arbitrary code via crafted HTTP requests."
+            },
+            {
+                "CVE_ID": "CVE-2009-3555",
+                "Description": "The TLS protocol, and the SSL protocol 3.0 and possibly earlier, as used in Microsoft Internet Information Services (IIS) 7.0, mod_ssl in the Apache HTTP Server 2.2.14 and earlier, OpenSSL before 0.9.8l, GnuTLS 2.8.5 and earlier, Mozilla Network Security Services (NSS) 3.12.4 and earlier, multiple Cisco products, and other products, does not properly associate renegotiation handshakes with an existing connection, which allows man-in-the-middle attackers to insert data into HTTPS sessions, and possibly other types of sessions protected by TLS or SSL, by sending an unauthenticated request that is processed retroactively by a server in a post-renegotiation context, related to a \"plaintext injection\" attack, aka the \"Project Mogul\" issue."
+            },
+            {
+                "CVE_ID": "CVE-2009-3896",
+                "Description": "src/http/ngx_http_parse.c in nginx (aka Engine X) 0.1.0 through 0.4.14, 0.5.x before 0.5.38, 0.6.x before 0.6.39, 0.7.x before 0.7.62, and 0.8.x before 0.8.14 allows remote attackers to cause a denial of service (NULL pointer dereference and worker process crash) via a long URI."
+            },
+            {
+                "CVE_ID": "CVE-2009-3898",
+                "Description": "Directory traversal vulnerability in src/http/modules/ngx_http_dav_module.c in nginx (aka Engine X) before 0.7.63, and 0.8.x before 0.8.17, allows remote authenticated users to create or overwrite arbitrary files via a .. (dot dot) in the Destination HTTP header for the WebDAV (1) COPY or (2) MOVE method."
+            },
+            {
+                "CVE_ID": "CVE-2010-4180",
+                "Description": "OpenSSL before 0.9.8q, and 1.0.x before 1.0.0c, when SSL_OP_NETSCAPE_REUSE_CIPHER_CHANGE_BUG is enabled, does not properly prevent modification of the ciphersuite in the session cache, which allows remote attackers to force the downgrade to an unintended cipher via vectors involving sniffing network traffic to discover a session identifier."
+            },
+            {
+                "CVE_ID": "CVE-2012-1180",
+                "Description": "Use-after-free vulnerability in nginx before 1.0.14 and 1.1.x before 1.1.17 allows remote HTTP servers to obtain sensitive information from process memory via a crafted backend response, in conjunction with a client request."
+            },
+            {
+                "CVE_ID": "CVE-2013-0337",
+                "Description": "The default configuration of nginx, possibly 1.3.13 and earlier, uses world-readable permissions for the (1) access.log and (2) error.log files, which allows local users to obtain sensitive information by reading the files."
+            },
+            {
+                "CVE_ID": "CVE-2014-3616",
+                "Description": "nginx 0.5.6 through 1.7.4, when using the same shared ssl_session_cache or ssl_session_ticket_key for multiple servers, can reuse a cached SSL session for an unrelated context, which allows remote attackers with certain privileges to conduct \"virtual host confusion\" attacks."
+            },
+            {
+                "CVE_ID": "CVE-2016-1247",
+                "Description": "The nginx package before 1.6.2-5+deb8u3 on Debian jessie, the nginx packages before 1.4.6-1ubuntu3.6 on Ubuntu 14.04 LTS, before 1.10.0-0ubuntu0.16.04.3 on Ubuntu 16.04 LTS, and before 1.10.1-0ubuntu1.1 on Ubuntu 16.10, and the nginx ebuild before 1.10.2-r3 on Gentoo allow local users with access to the web server user account to gain root privileges via a symlink attack on the error log."
+            },
+            {
+                "CVE_ID": "CVE-2017-7529",
+                "Description": "Nginx versions since 0.5.6 up to and including 1.13.2 are vulnerable to integer overflow vulnerability in nginx range filter module resulting into leak of potentially sensitive information triggered by specially crafted request."
+            },
+            {
+                "CVE_ID": "CVE-2019-20372",
+                "Description": "NGINX before 1.17.7, with certain error_page configurations, allows HTTP request smuggling, as demonstrated by the ability of an attacker to read unauthorized web pages in environments where NGINX is being fronted by a load balancer."
+            },
+            {
+                "CVE_ID": "CVE-2017-20005",
+                "Description": "NGINX before 1.13.6 has a buffer overflow for years that exceed four digits, as demonstrated by a file with a modification date in 1969 that causes an integer overflow (or a false modification date far in the future), when encountered by the autoindex module."
+            },
+            {
+                "CVE_ID": "CVE-2021-3618",
+                "Description": "ALPACA is an application layer protocol content confusion attack, exploiting TLS servers implementing different protocols but using compatible certificates, such as multi-domain or wildcard certificates. A MiTM attacker having access to victim's traffic at the TCP/IP layer can redirect traffic from one subdomain to another, resulting in a valid TLS session. This breaks the authentication of TLS and cross-protocol attacks may be possible where the behavior of one protocol service may compromise the other at the application layer."
+            }
+        ]
+    },
+    "openbsd:openssh:7.7": {
+        "Product": "openbsd:openssh:7.7",
+        "CVEs": [
+            {
+                "CVE_ID": "CVE-2018-15473",
+                "Description": "OpenSSH through 7.7 is prone to a user enumeration vulnerability due to not delaying bailout for an invalid authenticating user until after the packet containing the request has been fully parsed, related to auth2-gss.c, auth2-hostbased.c, and auth2-pubkey.c."
+            },
+            {
+                "CVE_ID": "CVE-2018-15919",
+                "Description": "Remotely observable behaviour in auth-gss2.c in OpenSSH through 7.8 could be used by remote attackers to detect existence of users on a target system when GSS2 is in use. NOTE: the discoverer states 'We understand that the OpenSSH developers do not want to treat such a username enumeration (or \"oracle\") as a vulnerability.'"
+            },
+            {
+                "CVE_ID": "CVE-2018-20685",
+                "Description": "In OpenSSH 7.9, scp.c in the scp client allows remote SSH servers to bypass intended access restrictions via the filename of . or an empty filename. The impact is modifying the permissions of the target directory on the client side."
+            },
+            {
+                "CVE_ID": "CVE-2019-6109",
+                "Description": "An issue was discovered in OpenSSH 7.9. Due to missing character encoding in the progress display, a malicious server (or Man-in-The-Middle attacker) can employ crafted object names to manipulate the client output, e.g., by using ANSI control codes to hide additional files being transferred. This affects refresh_progress_meter() in progressmeter.c."
+            },
+            {
+                "CVE_ID": "CVE-2019-6110",
+                "Description": "In OpenSSH 7.9, due to accepting and displaying arbitrary stderr output from the server, a malicious server (or Man-in-The-Middle attacker) can manipulate the client output, for example to use ANSI control codes to hide additional files being transferred."
+            },
+            {
+                "CVE_ID": "CVE-2019-6111",
+                "Description": "An issue was discovered in OpenSSH 7.9. Due to the scp implementation being derived from 1983 rcp, the server chooses which files/directories are sent to the client. However, the scp client only performs cursory validation of the object name returned (only directory traversal attacks are prevented). A malicious scp server (or Man-in-The-Middle attacker) can overwrite arbitrary files in the scp client target directory. If recursive operation (-r) is performed, the server can manipulate subdirectories as well (for example, to overwrite the .ssh/authorized_keys file)."
+            },
+            {
+                "CVE_ID": "CVE-2019-16905",
+                "Description": "OpenSSH 7.7 through 7.9 and 8.x before 8.1, when compiled with an experimental key type, has a pre-authentication integer overflow if a client or server is configured to use a crafted XMSS key. This leads to memory corruption and local code execution because of an error in the XMSS key parsing algorithm. NOTE: the XMSS implementation is considered experimental in all released OpenSSH versions, and there is no supported way to enable it when building portable OpenSSH."
+            },
+            {
+                "CVE_ID": "CVE-2020-14145",
+                "Description": "The client side in OpenSSH 5.7 through 8.4 has an Observable Discrepancy leading to an information leak in the algorithm negotiation. This allows man-in-the-middle attackers to target initial connection attempts (where no host key for the server has been cached by the client). NOTE: some reports state that 8.5 and 8.6 are also affected."
+            },
+            {
+                "CVE_ID": "CVE-2020-15778",
+                "Description": "scp in OpenSSH through 8.3p1 allows command injection in the scp.c toremote function, as demonstrated by backtick characters in the destination argument. NOTE: the vendor reportedly has stated that they intentionally omit validation of \"anomalous argument transfers\" because that could \"stand a great chance of breaking existing workflows.\""
+            },
+            {
+                "CVE_ID": "CVE-2016-20012",
+                "Description": "OpenSSH through 8.7 allows remote attackers, who have a suspicion that a certain combination of username and public key is known to an SSH server, to test whether this suspicion is correct. This occurs because a challenge is sent only when that combination could be valid for a login session. NOTE: the vendor does not recognize user enumeration as a vulnerability for this product"
+            },
+            {
+                "CVE_ID": "CVE-2021-41617",
+                "Description": "sshd in OpenSSH 6.2 through 8.x before 8.8, when certain non-default configurations are used, allows privilege escalation because supplemental groups are not initialized as expected. Helper programs for AuthorizedKeysCommand and AuthorizedPrincipalsCommand may run with privileges associated with group memberships of the sshd process, if the configuration specifies running the command as a different user."
+            },
+            {
+                "CVE_ID": "CVE-2021-36368",
+                "Description": "An issue was discovered in OpenSSH before 8.9. If a client is using public-key authentication with agent forwarding but without -oLogLevel=verbose, and an attacker has silently modified the server to support the None authentication option, then the user cannot determine whether FIDO authentication is going to confirm that the user wishes to connect to that server, or that the user wishes to allow that server to connect to a different server on the user's behalf. NOTE: the vendor's position is \"this is not an authentication bypass, since nothing is being bypassed."
+            },
+            {
+                "CVE_ID": "CVE-2023-38408",
+                "Description": "The PKCS#11 feature in ssh-agent in OpenSSH before 9.3p2 has an insufficiently trustworthy search path, leading to remote code execution if an agent is forwarded to an attacker-controlled system. (Code in /usr/lib is not necessarily safe for loading into ssh-agent.) NOTE: this issue exists because of an incomplete fix for CVE-2016-10009."
+            },
+            {
+                "CVE_ID": "CVE-2023-48795",
+                "Description": "The SSH transport protocol with certain OpenSSH extensions, found in OpenSSH before 9.6 and other products, allows remote attackers to bypass integrity checks such that some packets are omitted (from the extension negotiation message), and a client and server may consequently end up with a connection for which some security features have been downgraded or disabled, aka a Terrapin attack. This occurs because the SSH Binary Packet Protocol (BPP), implemented by these extensions, mishandles the handshake phase and mishandles use of sequence numbers. For example, there is an effective attack against SSH's use of ChaCha20-Poly1305 (and CBC with Encrypt-then-MAC). The bypass occurs in chacha20-poly1305@openssh.com and (if CBC is used) the -etm@openssh.com MAC algorithms. This also affects Maverick Synergy Java SSH API before 3.1.0-SNAPSHOT, Dropbear through 2022.83, Ssh before 5.1.1 in Erlang/OTP, PuTTY before 0.80, AsyncSSH before 2.14.2, golang.org/x/crypto before 0.17.0, libssh before 0.10.6, libssh2 through 1.11.0, Thorn Tech SFTP Gateway before 3.4.6, Tera Term before 5.1, Paramiko before 3.4.0, jsch before 0.2.15, SFTPGo before 2.5.6, Netgate pfSense Plus through 23.09.1, Netgate pfSense CE through 2.7.2, HPN-SSH through 18.2.0, ProFTPD before 1.3.8b (and before 1.3.9rc2), ORYX CycloneSSH before 2.3.4, NetSarang XShell 7 before Build 0144, CrushFTP before 10.6.0, ConnectBot SSH library before 2.2.22, Apache MINA sshd through 2.11.0, sshj through 0.37.0, TinySSH through 20230101, trilead-ssh2 6401, LANCOM LCOS and LANconfig, FileZilla before 3.66.4, Nova before 11.8, PKIX-SSH before 14.4, SecureCRT before 9.4.3, Transmit5 before 5.10.4, Win32-OpenSSH before 9.5.0.0p1-Beta, WinSCP before 6.2.2, Bitvise SSH Server before 9.32, Bitvise SSH Client before 9.33, KiTTY through 0.76.1.13, the net-ssh gem 7.2.0 for Ruby, the mscdex ssh2 module before 1.15.0 for Node.js, the thrussh library before 0.35.1 for Rust, and the Russh crate before 0.40.2 for Rust."
+            },
+            {
+                "CVE_ID": "CVE-2023-51385",
+                "Description": "In ssh in OpenSSH before 9.6, OS command injection might occur if a user name or host name has shell metacharacters, and this name is referenced by an expansion token in certain situations. For example, an untrusted Git repository can have a submodule with shell metacharacters in a user name or host name."
+            },
+            {
+                "CVE_ID": "CVE-2025-26465",
+                "Description": "A vulnerability was found in OpenSSH when the VerifyHostKeyDNS option is enabled. A machine-in-the-middle attack can be performed by a malicious machine impersonating a legit server. This issue occurs due to how OpenSSH mishandles error codes in specific conditions when verifying the host key. For an attack to be considered successful, the attacker needs to manage to exhaust the client's memory resource first, turning the attack complexity high."
+            },
+            {
+                "CVE_ID": "CVE-2025-32728",
+                "Description": "In sshd in OpenSSH before 10.0, the DisableForwarding directive does not adhere to the documentation stating that it disables X11 and agent forwarding."
+            }
+        ]
+    }
+}
