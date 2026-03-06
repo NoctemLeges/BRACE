@@ -152,6 +152,7 @@ def generateCVEJson(infos: list, output_file: str = "VersionInfo_CVE.json"):
 
     print(f"Json saved: {output_file}")
 
-infos = readVersionInfo("VersionInfo.txt")
-checkVulnVersion(infos)
-generateCVEJson(infos)
+if __name__ == "__main__":
+    infos = readVersionInfo("VersionInfo.txt")
+    checkVulnVersion(infos)
+    generateCVEJson(infos)
