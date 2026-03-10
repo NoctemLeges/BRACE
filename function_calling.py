@@ -4,7 +4,7 @@ import Demo.checkVulnVersions as dm
 
 model_id = "mistralai/Mistral-7B-Instruct-v0.3"
 tokenizer = AutoTokenizer.from_pretrained(model_id)
-conversation = [{"role": "user", "content": "Check which versions are vulnerable in Demo/VersionInfo.txt"}]
+conversation = [{"role": "user", "content": "Check which versions are vulnerable in VersionInfo2.txt"}]
 
 tools = [
     dm.readVersionInfo,

@@ -21,3 +21,10 @@ hello.py
 .pytest_cache/
 .mypy_cache/
 coverage.xml
+
+# Claude
+.claude/
+
+# Arena runtime artifacts
+arena_output/
+arena_versions.txt
