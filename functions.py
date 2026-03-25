@@ -13,14 +13,26 @@ def readVersions() -> dict[str, str]:
     return versionInfo
 
 def findVulnVersions(versionInfo: dict) -> list:
-    numVulns = list()
-    for key in versionInfo.keys():
-        url = f"https://services.nvd.nist.gov/rest/json/cves/2.0?keywordSearch={key} {versionInfo[key]}"
-        response = requests.get(url)
-        #print(response.text)
-        parsed_response = json.loads(response.text)
-        #print(parsed_response)
-        numVulns.append(len(parsed_response["vulnerabilities"]))
-    return numVulns          
+    productVersion = "0.5.6"
+    vendor = "nginx"
+    product = "nginx"
+    # Changed the API. Refer to Session 15th October 2025
+    retrieve_CPE_API= f"https://services.nvd.nist.gov/rest/json/cpematch/2.0?matchStringSearch=cpe:2.3:a:{vendor}:{product}:{productVersion}"
+    retrieve_CVE_API_base = "https://services.nvd.nist.gov/rest/json/cves/2.0?cpeName="
+    response = requests.get(retrieve_CPE_API)
+    response = json.loads(response.text)
+    #print(response)
+    #versionStartIncluding = response['matchStrings'][0]['matchString']['versionStartIncluding']
+    #versionEndIncluding = response['matchStrings'][0]['matchString']['versionEndIncluding']
+    matches = response['matchStrings'][0]['matchString']
+    print(matches)
+    #for match in matches:
+        #print(match['cpeName'])
+        #response = requests.get(f"{retrieve_CVE_API_base}{match['cpeName']}")
+        #print(f"--------------For version {match}------------------------------")
+        #print(response.text,end='\n\n')
+    #print(versionStartIncluding, versionEndIncluding) 
+    #print(response['matchStrings'][0]['matchString'])       
 versionInfo = readVersions()
-print(findVulnVersions(versionInfo))
+#print(findVulnVersions(versionInfo))
+findVulnVersions(versionInfo)

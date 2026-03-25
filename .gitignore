@@ -28,3 +28,6 @@ coverage.xml
 # Arena runtime artifacts
 arena_output/
 arena_versions.txt
+
+#My personal Notes
+Notes.md
