@@ -10,7 +10,6 @@ from io import BytesIO
 DRY_RUN = "--dry-run" in sys.argv
 
 INSTALL_DIR = r"C:\nginx"
-CLONE_DIR = os.path.expanduser("~/Downloads/nginx")
 LOG_FILE = os.path.expanduser("~/Projects/BRACE/update_scripts/logs/update_nginx.log")
 NGINX_REPO = "https://github.com/nginx/nginx.git"
 
@@ -35,32 +34,18 @@ def run(args, **kwargs):
 
 
 def get_latest_version_from_github():
-    """Clone the nginx repo from GitHub and get the latest release version."""
+    """Get the latest nginx release version from GitHub tags (no clone needed)."""
     print("  Fetching latest version from GitHub...")
-    if DRY_RUN:
-        shell(f"rmdir /s /q {CLONE_DIR}")
-        shell(f"mkdir {CLONE_DIR}")
-        shell(f"cd {CLONE_DIR} && git clone {NGINX_REPO}")
-        # In dry-run, use git ls-remote to get the real latest version without cloning
-        result = subprocess.run(
-            ["git", "ls-remote", "--tags", NGINX_REPO],
-            capture_output=True, text=True
-        )
-        tags = result.stdout
-    else:
-        if os.path.exists(CLONE_DIR):
-            shutil.rmtree(CLONE_DIR)
-        os.makedirs(CLONE_DIR, exist_ok=True)
-        shell(f"cd {CLONE_DIR} && git clone {NGINX_REPO}")
-        result = subprocess.run(
-            ["git", "tag"],
-            cwd=os.path.join(CLONE_DIR, "nginx"),
-            capture_output=True, text=True
-        )
-        tags = result.stdout
+    result = subprocess.run(
+        ["git", "ls-remote", "--tags", NGINX_REPO],
+        capture_output=True, text=True
+    )
+    if result.returncode != 0:
+        print(f"  [ERROR] git ls-remote failed: {result.stderr}")
+        sys.exit(1)
 
     # Tags look like release-1.28.3
-    versions = re.findall(r'release-(\d+\.\d+\.\d+)', tags)
+    versions = re.findall(r'release-(\d+\.\d+\.\d+)', result.stdout)
     if not versions:
         print("  [ERROR] Could not find any release tags from GitHub")
         sys.exit(1)
