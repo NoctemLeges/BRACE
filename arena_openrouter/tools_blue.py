@@ -1,10 +1,10 @@
 import json
 import glob
+import platform
+import subprocess
 import sys
 import os
 from pathlib import Path
-
-import lmstudio as lms
 
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), ".."))
 from Demo.checkVulnVersions import (
@@ -12,6 +12,7 @@ from Demo.checkVulnVersions import (
     checkVulnVersion,
 )
 from update_scripts.github_versions import get_latest_from_github
+from llm_client import LLMClient, Chat
 
 _state = None
 
@@ -31,7 +32,6 @@ def blue_detect_threats(working_dir: str) -> str:
     Returns:
         A threat briefing summarizing what the Red Team discovered and planned.
     """
-    # Search in the output directory if state is available, otherwise use working_dir
     search_dir = _state.output_dir if _state else working_dir
     cve_files = sorted(glob.glob(os.path.join(search_dir, "cve_round*.json")))
     plan_files = sorted(glob.glob(os.path.join(search_dir, "payload_plan_round*.json")))
@@ -125,7 +125,6 @@ def blue_generate_firewall_rules(filename: str) -> str:
     Returns:
         Generated iptables/nftables firewall rules to mitigate detected threats.
     """
-    # Gather CVE data from Red's artifacts
     search_dir = _state.output_dir if _state else "."
     cve_files = sorted(glob.glob(os.path.join(search_dir, "cve_round*.json")))
     cve_context = ""
@@ -138,7 +137,6 @@ def blue_generate_firewall_rules(filename: str) -> str:
             continue
 
     if not cve_context:
-        # Fall back to reading the version file for context
         infos = readVersionInfo(filename)
         cve_context = f"Software inventory: {', '.join(i.strip() for i in infos)}"
 
@@ -155,12 +153,10 @@ CVE Data:
 
 Return ONLY the firewall rules, one per line."""
 
-    model = lms.llm("openai/gpt-oss-20b")
-    chat = lms.Chat("You generate iptables firewall rules. Return only valid firewall rules.")
+    model = LLMClient()
+    chat = Chat("You generate iptables firewall rules. Return only valid firewall rules.")
     chat.add_user_message(prompt)
-    result = model.respond(chat)
-
-    rules = result.content.strip()
+    rules = model.respond(chat).strip()
 
     if _state is not None:
         _state.log_event("BLUE", "firewall", {"rules": rules})
@@ -198,3 +194,107 @@ def blue_validate_patches(filename: str) -> str:
 
     status = "ALL CLEAR" if not remaining else f"{len(remaining)} PRODUCTS STILL VULNERABLE"
     return f"Patch validation — {status}:\n" + "\n".join(report_lines)
+
+
+def blue_patch_nginx(dry_run: bool = True) -> str:
+    """
+    Patch nginx to the latest version using the OS-appropriate update script. Removes the old nginx, downloads the latest from GitHub, installs, and starts it.
+
+    Args:
+        dry_run: If True, simulates the update without making changes. If False, actually patches nginx.
+
+    Returns:
+        The output from the update script showing each step performed.
+    """
+    system = platform.system().lower()
+    project_root = os.path.join(os.path.dirname(__file__), "..")
+
+    if system == "windows":
+        script = os.path.join(project_root, "update_scripts", "nginx_windows.py")
+    else:
+        script = os.path.join(project_root, "update_scripts", "nginx_linux.py")
+
+    if not os.path.exists(script):
+        return f"Error: update script not found at {script}"
+
+    cmd = [sys.executable, script]
+    if dry_run:
+        cmd.append("--dry-run")
+
+    try:
+        result = subprocess.run(
+            cmd,
+            capture_output=True,
+            text=True,
+            timeout=300,
+        )
+        output = result.stdout
+        if result.stderr:
+            output += f"\nSTDERR:\n{result.stderr}"
+        if result.returncode != 0:
+            output += f"\n[WARNING] Script exited with code {result.returncode}"
+    except subprocess.TimeoutExpired:
+        output = "Error: update script timed out after 300 seconds"
+    except Exception as e:
+        output = f"Error running update script: {e}"
+
+    if _state is not None:
+        _state.log_event("BLUE", "patch_nginx", {
+            "dry_run": dry_run,
+            "script": script,
+        })
+
+    mode = "DRY-RUN" if dry_run else "LIVE"
+    return f"Nginx patch ({mode}):\n{output}"
+
+
+def blue_patch_openssh(dry_run: bool = True) -> str:
+    """
+    Patch openssh to the latest version using the OS-appropriate update script. Removes the old openssh, downloads the latest from GitHub, installs, and starts it.
+
+    Args:
+        dry_run: If True, simulates the update without making changes. If False, actually patches openssh.
+
+    Returns:
+        The output from the update script showing each step performed.
+    """
+    system = platform.system().lower()
+    project_root = os.path.join(os.path.dirname(__file__), "..")
+
+    if system == "windows":
+        script = os.path.join(project_root, "update_scripts", "openssh_windows.py")
+    else:
+        script = os.path.join(project_root, "update_scripts", "openssh_linux.py")
+
+    if not os.path.exists(script):
+        return f"Error: update script not found at {script}"
+
+    cmd = [sys.executable, script]
+    if dry_run:
+        cmd.append("--dry-run")
+
+    try:
+        result = subprocess.run(
+            cmd,
+            capture_output=True,
+            text=True,
+            timeout=300,
+        )
+        output = result.stdout
+        if result.stderr:
+            output += f"\nSTDERR:\n{result.stderr}"
+        if result.returncode != 0:
+            output += f"\n[WARNING] Script exited with code {result.returncode}"
+    except subprocess.TimeoutExpired:
+        output = "Error: update script timed out after 300 seconds"
+    except Exception as e:
+        output = f"Error running update script: {e}"
+
+    if _state is not None:
+        _state.log_event("BLUE", "patch_openssh", {
+            "dry_run": dry_run,
+            "script": script,
+        })
+
+    mode = "DRY-RUN" if dry_run else "LIVE"
+    return f"OpenSSH patch ({mode}):\n{output}"

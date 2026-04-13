@@ -92,8 +92,11 @@ def print_final_results(state):
         print(f"  Final validation: {last.get('fixed', 0)} fixed, {last.get('remaining', 0)} remaining")
 
     print()
-    if state.red_scores and state.red_scores[-1] == 0:
+    # Check validation results (post-patch) rather than red's scan (pre-patch)
+    if state.blue_validations and state.blue_validations[-1].get("remaining", 1) == 0:
         print(f"  {BLUE}BLUE TEAM WINS — all vulnerabilities patched!{YELLOW}")
+    elif state.red_scores and state.red_scores[-1] == 0:
+        print(f"  {BLUE}BLUE TEAM WINS — no vulnerabilities found!{YELLOW}")
     else:
         print(f"  {RED}RED TEAM WINS — vulnerabilities remain!{YELLOW}")
     print(f"{'═' * 60}{RESET}\n")

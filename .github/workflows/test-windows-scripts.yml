@@ -1,0 +1,38 @@
+name: Test Windows update scripts
+
+on:
+  push:
+    paths:
+      - 'update_scripts/nginx_windows.py'
+      - 'update_scripts/openssh_windows.py'
+  pull_request:
+    paths:
+      - 'update_scripts/nginx_windows.py'
+      - 'update_scripts/openssh_windows.py'
+
+jobs:
+  test-nginx:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Run nginx_windows.py in dry-run mode
+        run: python update_scripts/nginx_windows.py --dry-run
+
+  test-openssh:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Run openssh_windows.py in dry-run mode
+        run: python update_scripts/openssh_windows.py --dry-run

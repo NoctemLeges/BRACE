@@ -29,5 +29,6 @@ coverage.xml
 arena_output/
 arena_versions.txt
 
+.env
 #My personal Notes
 Notes.md
