@@ -1,0 +1,20 @@
+2026-04-17 22:33:55,665 [INFO] ==== OpenSSH Auto Installer Started ====
+2026-04-17 22:33:55,665 [INFO] Fetching latest OpenSSH version...
+2026-04-17 22:33:57,225 [INFO] Latest version: 10.3p1
+2026-04-17 22:33:57,225 [INFO] Removing old OpenSSH...
+2026-04-17 22:33:57,373 [ERROR] Failed to stop sshd.service: Unit sshd.service not loaded.
+
+2026-04-17 22:33:57,373 [ERROR] Command failed: sudo systemctl stop sshd
+2026-04-17 22:33:57,373 [ERROR] Failed to stop sshd.service: Unit sshd.service not loaded.
+2026-04-17 22:39:39,776 [INFO] ==== OpenSSH Auto Installer Started ====
+2026-04-17 22:39:39,777 [INFO] Fetching latest OpenSSH version...
+2026-04-17 22:39:40,946 [INFO] Latest version: 10.3p1
+2026-04-17 22:39:40,947 [INFO] Checking for existing OpenSSH...
+2026-04-17 22:39:40,954 [WARNING] No existing OpenSSH installation found
+2026-04-17 22:39:40,955 [INFO] Cloning OpenSSH repo...
+2026-04-17 22:39:40,991 [DEBUG] 
+2026-04-17 22:39:41,063 [DEBUG] 
+2026-04-17 22:39:58,531 [DEBUG] 
+2026-04-17 22:39:58,532 [INFO] Repository cloned
+2026-04-17 22:39:58,532 [INFO] Building OpenSSH...
+2026-04-17 22:39:58,637 [DEBUG] 

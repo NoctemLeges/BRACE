@@ -1,6 +1,6 @@
 Cloning into 'nginx'...
 checking for OS
- + Linux 6.8.0-106-generic x86_64
+ + Linux 6.8.0-107-generic x86_64
 checking for C compiler ... found
  + using GNU C compiler
  + gcc version: 12.3.0 (Ubuntu 12.3.0-1ubuntu1~22.04.3) 
@@ -681,3 +681,4 @@ test -d '/usr/local/nginx/html' \
 test -d '/usr/local/nginx/logs' \
 	|| mkdir -p '/usr/local/nginx/logs'
 make[1]: Leaving directory '/home/n0ct3m/Downloads/nginx/nginx'
+80/tcp:               1090  1091  1092  1093  1094  1095
