@@ -6,13 +6,16 @@ import sys
 import os
 from pathlib import Path
 
-sys.path.insert(0, os.path.join(os.path.dirname(__file__), ".."))
-from Demo.checkVulnVersions import (
+PROJECT_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
+if PROJECT_ROOT not in sys.path:
+    sys.path.insert(0, PROJECT_ROOT)
+
+from Code_For_BTA.checkVulnVersions import (
     readVersionInfo,
     checkVulnVersion,
 )
-from update_scripts.github_versions import get_latest_from_github
-from llm_client import LLMClient, Chat
+from Code_For_Hosts.update_scripts.github_versions import get_latest_from_github
+from Code_For_LLM_Server.llm_client import LLMClient, Chat
 
 _state = None
 
@@ -207,18 +210,20 @@ def blue_patch_nginx(dry_run: bool = True) -> str:
         The output from the update script showing each step performed.
     """
     system = platform.system().lower()
-    project_root = os.path.join(os.path.dirname(__file__), "..")
-
     if system == "windows":
-        script = os.path.join(project_root, "update_scripts", "nginx_windows.py")
+        script = os.path.join(PROJECT_ROOT, "Code_For_Hosts", "update_scripts", "nginx_windows.py")
     else:
-        script = os.path.join(project_root, "update_scripts", "nginx_linux.py")
+        script = os.path.join(PROJECT_ROOT, "Code_For_Hosts", "update_scripts", "nginx_linux.py")
 
     if not os.path.exists(script):
         return f"Error: update script not found at {script}"
 
-    cmd = [sys.executable, script]
-    if dry_run:
+    if script.endswith(".py"):
+        cmd = [sys.executable, script]
+    else:
+        cmd = ["cmd", "/c", script]
+
+    if dry_run and script.endswith(".py"):
         cmd.append("--dry-run")
 
     try:
@@ -259,18 +264,20 @@ def blue_patch_openssh(dry_run: bool = True) -> str:
         The output from the update script showing each step performed.
     """
     system = platform.system().lower()
-    project_root = os.path.join(os.path.dirname(__file__), "..")
-
     if system == "windows":
-        script = os.path.join(project_root, "update_scripts", "openssh_windows.py")
+        script = os.path.join(PROJECT_ROOT, "Code_For_Hosts", "update_scripts", "openssh_windows.bat")
     else:
-        script = os.path.join(project_root, "update_scripts", "openssh_linux.py")
+        script = os.path.join(PROJECT_ROOT, "Code_For_Hosts", "update_scripts", "openssh_linux.py")
 
     if not os.path.exists(script):
         return f"Error: update script not found at {script}"
 
-    cmd = [sys.executable, script]
-    if dry_run:
+    if script.endswith(".py"):
+        cmd = [sys.executable, script]
+    else:
+        cmd = ["cmd", "/c", script]
+
+    if dry_run and script.endswith(".py"):
         cmd.append("--dry-run")
 
     try:

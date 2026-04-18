@@ -5,7 +5,14 @@ Tests: (1) basic completion, (2) schema generation, (3) tool calling loop.
 Usage: python test_openrouter.py
 """
 import json
-from llm_client import LLMClient, Chat, function_to_tool_schema
+import os
+import sys
+
+PROJECT_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
+if PROJECT_ROOT not in sys.path:
+    sys.path.insert(0, PROJECT_ROOT)
+
+from Code_For_LLM_Server.llm_client import LLMClient, Chat, function_to_tool_schema
 
 
 # ── Test 1: Basic text completion ──────────────────────────────────────

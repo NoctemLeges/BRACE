@@ -1,7 +1,10 @@
 import os
 import subprocess
 
-LOG_FILE = os.path.expanduser("~/Projects/BRACE/update_scripts/logs/update_nginx.log")
+SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
+LOG_FILE = os.path.join(SCRIPT_DIR, "logs", "update_nginx.log")
+DOWNLOADS_DIR = os.path.expanduser("~/Downloads")
+CLONE_DIR = os.path.join(DOWNLOADS_DIR, "nginx")
 
 os.makedirs(os.path.dirname(LOG_FILE), exist_ok=True)
 open(LOG_FILE, 'w').close()  # Create/clear log file
@@ -18,16 +21,16 @@ def remove_old_nginx():
 
 def download_new_nginx():
     print("2. -------------DOWNLOADING NEW NGINX----------------------")
-    shell("rm -rf ~/Downloads/nginx")
+    shell(f"rm -rf \"{CLONE_DIR}\"")
     print("[+] (2.1) Deleted the old repository")
-    shell("mkdir -p ~/Downloads/nginx")
+    shell(f"mkdir -p \"{CLONE_DIR}\"")
     print("[+] (2.2) Made new repository folder")
-    shell("cd ~/Downloads/nginx && git clone https://github.com/nginx/nginx.git")
+    shell(f"cd \"{CLONE_DIR}\" && git clone https://github.com/nginx/nginx.git")
     print("[+] (2.3) Cloned latest repo from Github")
 
 def install_new_nginx():
     print("3. -------------INSTALLING NEW NGINX----------------------")
-    nginx_dir = os.path.expanduser("~/Downloads/nginx/nginx/")
+    nginx_dir = os.path.join(CLONE_DIR, "nginx")
 
     print("[+] (3.1) Running auto/configure...")
     with open(LOG_FILE, 'a') as log:

@@ -23,7 +23,7 @@ def _sync_blue_metrics(state: BattlefieldState, round_num: int):
         state.blue_validations.append(val_events[-1])
 
 
-def run_arena(version_file: str = "VersionInfo2.txt", max_rounds: int = 3):
+def run_arena(version_file: str = "VersionInfo.txt", max_rounds: int = 3):
     state = BattlefieldState(version_file)
     red = RedAgent(state)
     blue = BlueAgent(state)

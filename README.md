@@ -64,18 +64,18 @@ pip install -r requirements.txt
 Make sure LM Studio is running with `gpt-oss-20b` loaded, then:
 
 ```bash
-python run_arena.py
+python Misc_Testing/run_arena.py
 ```
 
 ### Options
 
 ```bash
-python run_arena.py --file VersionInfo2.txt --rounds 3
+python Misc_Testing/run_arena.py --file VersionInfo.txt --rounds 3
 ```
 
 | Flag | Default | Description |
 |------|---------|-------------|
-| `--file` | `VersionInfo2.txt` | Path to the version info file to scan |
+| `--file` | `VersionInfo.txt` | Path to the version info file to scan |
 | `--rounds` | `3` | Number of attack/defend rounds |
 
 ### What Happens
@@ -122,31 +122,27 @@ f5:nginx:0.5.6
 openbsd:openssh:7.7
 ```
 
-You can create your own version files or use `extractVersion.sh` to pull versions from a live system using nmap/systemctl.
+You can create your own version files or use `Code_For_Hosts/extract_version_scripts/extract_version_linux.sh` to pull versions from a live system using nmap/systemctl.
 
 ## Project Structure
 
 ```
 BRACE/
-├── arena/                    # Red vs Blue arena system
-│   ├── shared_state.py       # Battlefield state (event log, scores)
-│   ├── display.py            # ANSI-colored terminal output
-│   ├── tools_red.py          # Red team tools (scan, CVE JSON, payload plan)
-│   ├── tools_blue.py         # Blue team tools (scan, patch, report)
-│   ├── red_agent.py          # Red team agent (LLM + function calling)
-│   ├── blue_agent.py         # Blue team agent (LLM + function calling)
-│   └── orchestrator.py       # Turn-based game loop
-├── Demo/                     # Core vulnerability checking module
-│   └── checkVulnVersions.py  # NVD API functions (readVersionInfo, checkVulnVersion, etc.)
-├── payload_generation/       # Payload generation module
-│   ├── checkVulnVersions.py  # Extended with generateCVEJson
-│   ├── generate_payload.py   # Gemini-based payload planning
-│   └── msfvenom.info         # msfvenom reference data
-├── run_arena.py              # Arena entry point
-├── gpt_oss_tool.py           # Standalone LM Studio chat agent
-├── function_calling.py       # Mistral-7B function calling demo
-├── VersionInfo2.txt          # Sample version data
-├── extractVersion.sh         # Extract versions from live systems
+├── Misc_Testing/             # Arena runners and testing harnesses
+│   ├── arena/                # Red vs Blue arena system
+│   ├── arena_openrouter/     # OpenRouter-backed arena variant
+│   ├── run_arena.py          # Arena entry point
+│   └── run_arena_openrouter.py
+├── Code_For_BTA/
+│   └── checkVulnVersions.py  # Core vulnerability checking module
+├── Code_For_RTA/
+│   └── payload_generation/   # Payload generation module
+├── Code_For_LLM_Server/
+│   └── llm_client.py
+├── Code_For_Hosts/
+│   ├── update_scripts/
+│   └── extract_version_scripts/
+├── VersionInfo.txt           # Sample version data
 └── requirements.txt          # Python dependencies
 ```
 

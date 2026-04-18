@@ -1,3 +1,6 @@
+import os
+import sys
+
 from arena.shared_state import BattlefieldState
 from arena.display import BLUE, RESET
 from arena_openrouter.tools_blue import (
@@ -9,7 +12,12 @@ from arena_openrouter.tools_blue import (
     blue_patch_nginx,
     blue_patch_openssh,
 )
-from llm_client import LLMClient, Chat
+
+PROJECT_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
+if PROJECT_ROOT not in sys.path:
+    sys.path.insert(0, PROJECT_ROOT)
+
+from Code_For_LLM_Server.llm_client import LLMClient, Chat
 
 BLUE_SYSTEM_PROMPT = """You are a Blue Team defensive security agent. Your mission is to detect threats, patch vulnerabilities, harden defenses, and validate your fixes.
 

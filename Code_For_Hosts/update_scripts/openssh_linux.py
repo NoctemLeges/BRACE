@@ -5,7 +5,8 @@ import subprocess
 
 DRY_RUN = "--dry-run" in sys.argv
 
-LOG_FILE = os.path.expanduser("~/Projects/BRACE/update_scripts/logs/update_openssh.log")
+SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
+LOG_FILE = os.path.join(SCRIPT_DIR, "logs", "update_openssh.log")
 CLONE_DIR = os.path.expanduser("~/Downloads/openssh")
 OPENSSH_REPO = "https://github.com/openssh/openssh-portable.git"
 

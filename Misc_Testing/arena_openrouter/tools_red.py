@@ -2,13 +2,16 @@ import json
 import os
 import sys
 
-sys.path.insert(0, os.path.join(os.path.dirname(__file__), ".."))
-from payload_generation.checkVulnVersions import (
+PROJECT_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
+if PROJECT_ROOT not in sys.path:
+    sys.path.insert(0, PROJECT_ROOT)
+
+from Code_For_RTA.payload_generation.checkVulnVersions import (
     readVersionInfo,
     checkVulnVersion,
     generateCVEJson,
 )
-from llm_client import LLMClient, Chat
+from Code_For_LLM_Server.llm_client import LLMClient, Chat
 
 _state = None
 _round_num = 0

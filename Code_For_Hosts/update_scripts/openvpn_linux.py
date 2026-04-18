@@ -5,7 +5,8 @@ import logging
 import sys
 
 # ---------- Logging Setup ----------
-LOG_DIR = "logs"
+SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
+LOG_DIR = os.path.join(SCRIPT_DIR, "logs")
 LOG_FILE = os.path.join(LOG_DIR, "update_openvpn_linux.log")
 
 os.makedirs(LOG_DIR, exist_ok=True)

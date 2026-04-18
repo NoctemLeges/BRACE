@@ -1,3 +1,6 @@
+import os
+import sys
+
 from arena.shared_state import BattlefieldState
 from arena.display import RED, RESET
 from arena_openrouter.tools_red import (
@@ -6,7 +9,12 @@ from arena_openrouter.tools_red import (
     red_scan_and_report,
     red_generate_exploits,
 )
-from llm_client import LLMClient, Chat
+
+PROJECT_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
+if PROJECT_ROOT not in sys.path:
+    sys.path.insert(0, PROJECT_ROOT)
+
+from Code_For_LLM_Server.llm_client import LLMClient, Chat
 
 RED_SYSTEM_PROMPT = """You are a Red Team penetration testing agent. Your mission is to find vulnerabilities in software and generate exploit payload plans.
 

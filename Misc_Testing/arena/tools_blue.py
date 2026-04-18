@@ -6,12 +6,15 @@ from pathlib import Path
 
 import lmstudio as lms
 
-sys.path.insert(0, os.path.join(os.path.dirname(__file__), ".."))
-from Demo.checkVulnVersions import (
+PROJECT_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
+if PROJECT_ROOT not in sys.path:
+    sys.path.insert(0, PROJECT_ROOT)
+
+from Code_For_BTA.checkVulnVersions import (
     readVersionInfo,
     checkVulnVersion,
 )
-from update_scripts.github_versions import get_latest_from_github
+from Code_For_Hosts.update_scripts.github_versions import get_latest_from_github
 
 _state = None
 

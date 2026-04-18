@@ -4,7 +4,11 @@ import re
 import time
 import typing
 from openai import OpenAI, RateLimitError
-from llm_config import OPENROUTER_API_KEY, OPENROUTER_BASE_URL, DEFAULT_MODEL
+
+try:
+    from .llm_config import OPENROUTER_API_KEY, OPENROUTER_BASE_URL, DEFAULT_MODEL
+except ImportError:
+    from llm_config import OPENROUTER_API_KEY, OPENROUTER_BASE_URL, DEFAULT_MODEL
 
 
 def _python_type_to_json_schema(annotation) -> dict:

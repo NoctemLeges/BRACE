@@ -6,8 +6,8 @@ def main():
     parser = argparse.ArgumentParser(description="BRACE Arena (OpenRouter): Red Team vs Blue Team")
     parser.add_argument(
         "--file",
-        default="VersionInfo2.txt",
-        help="Path to the version info file (default: VersionInfo2.txt)",
+        default="VersionInfo.txt",
+        help="Path to the version info file (default: VersionInfo.txt)",
     )
     parser.add_argument(
         "--rounds",
