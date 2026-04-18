@@ -1,6 +1,6 @@
 #!/bin/bash
 
-OUTPUT_FILE="../VersionInfo.txt"
+OUTPUT_FILE="VersionInfo.txt"
 
 # Clear file
 > "$OUTPUT_FILE"
@@ -17,7 +17,7 @@ fi
 SSH_BIN="$(command -v ssh 2>/dev/null)"
 
 if [ -n "$SSH_BIN" ]; then
-    version=$("$SSH_BIN" -V 2>&1 | awk '{print $1}' | cut -d'_' -f2)
+    version=$("$SSH_BIN" -V 2>&1 | awk '{print $1}' | cut -d'_' -f2 | sed 's/,$//')
     echo "openbsd:openssh:$version" >> "$OUTPUT_FILE"
 fi
 
