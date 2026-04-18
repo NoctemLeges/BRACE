@@ -52,7 +52,15 @@ def handle_client(conn, addr):
         reply_list = [k for k, v in vuln_count_dict.items() if v > 0]
         reply = "\n".join(reply_list) if reply_list else "No vulnerabilities found"
 
-        send_message(conn, reply.encode())
+        #Temporary Stand-in code for Op. Admin
+        if reply != "No vulnerabilities found":
+            Admin_Choice = input(f"Send Update Command to {addr[0]}?[Y/N]: ")
+            if Admin_Choice in "Yy":
+                send_message(conn, reply.encode())
+            else:
+                send_message(conn,"No Updates Pending".encode())
+        else:
+            send_message(conn, reply.encode())
 
         print(f"[+] Analysis complete. Sent results.")
 
