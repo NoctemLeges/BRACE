@@ -1,3 +1,3 @@
 openvpn:openvpn:2.7.1
-openbsd:openssh:8.9p1
+openbsd:openssh:9.6p1
 f5:nginx:1.31.0
