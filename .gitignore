@@ -38,3 +38,6 @@ Code_For_BTA/VersionInfo_*
 
 #Host Stuff
 Code_For_Hosts/update_scripts/logs/
+
+arena/__pycache__/
+arena_openrouter/__pycache__/
