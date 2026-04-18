@@ -4,12 +4,14 @@ import os
 import logging
 import sys
 
-# ---------- Logging Setup ----------
+# ---------- Paths ----------
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 LOG_DIR = os.path.join(SCRIPT_DIR, "logs")
 LOG_FILE = os.path.join(LOG_DIR, "update_openvpn_linux.log")
+DOWNLOADS_DIR = os.path.expanduser("~/Downloads")
 
 os.makedirs(LOG_DIR, exist_ok=True)
+os.makedirs(DOWNLOADS_DIR, exist_ok=True)
 
 logging.basicConfig(
     filename=LOG_FILE,
@@ -74,7 +76,7 @@ def install_dependencies():
     ]
 
     run_cmd(["sudo", "apt", "update", "-y"])
-    run_cmd(["sudo", "apt", "upgrade", "-y"])
+    #run_cmd(["sudo", "apt", "upgrade", "-y"])
 
     for pkg in packages:
         log_print(f"Installing {pkg}...")
@@ -113,8 +115,8 @@ def get_new_openvpn():
         else:
             raise Exception("No suitable tar.gz asset found")
 
-        log_print(f"Downloading {package_name}...")
-        run_cmd(["wget", download_url])
+        log_print(f"Downloading {package_name} into ~/Downloads...")
+        run_cmd(["wget", download_url], cwd=DOWNLOADS_DIR)
 
         log_print(f"Downloaded {package_name}", "success")
         return package_name
@@ -130,20 +132,39 @@ def install_new_openvpn(package_name):
     install_dependencies()
 
     dir_name = package_name.replace(".tar.gz", "")
+    source_path = os.path.join(DOWNLOADS_DIR, dir_name)
+    tar_path = os.path.join(DOWNLOADS_DIR, package_name)
 
     log_print("Extracting package...")
-    run_cmd(["tar", "-xvzf", package_name])
+    run_cmd(["tar", "-xvzf", package_name], cwd=DOWNLOADS_DIR)
 
     log_print("Configuring build...")
-    run_cmd(["./configure"], cwd=dir_name)
+    run_cmd(["./configure"], cwd=source_path)
 
     log_print("Compiling...")
-    run_cmd(["make", f"-j{os.cpu_count()}"], cwd=dir_name)
+    run_cmd(["make", f"-j{os.cpu_count()}"], cwd=source_path)
 
     log_print("Installing...")
-    run_cmd(["sudo", "make", "install"], cwd=dir_name)
+    run_cmd(["sudo", "make", "install"], cwd=source_path)
 
     log_print("OpenVPN installed successfully!", "success")
+
+    # ---------- Cleanup ----------
+    log_print("Cleaning up build files...")
+
+    try:
+        if os.path.exists(tar_path):
+            os.remove(tar_path)
+            log_print(f"Removed {package_name}")
+
+        if os.path.exists(source_path):
+            run_cmd(["rm", "-rf", source_path])
+            log_print(f"Removed source directory {dir_name}")
+
+        log_print("Cleanup completed.", "success")
+
+    except Exception as e:
+        log_print(f"Cleanup failed: {str(e)}", "warning")
 
 # ---------- Main ----------
 if __name__ == "__main__":

@@ -72,26 +72,25 @@ def install_new_openssh(tag):
     shell(f"cd {src_dir} && git checkout {tag}")
     print(f"[+] (3.1) Checked out tag {tag}")
 
-    shell(f"cd {src_dir} && autoreconf")
     print("[+] (3.2) Running autoreconf...")
+    shell(f"cd {src_dir} && autoreconf")
 
     if DRY_RUN:
         print(f"  [DRY-RUN] Would execute: ./configure in {src_dir}")
         print(f"  [DRY-RUN] Would execute: make in {src_dir}")
         print(f"  [DRY-RUN] Would execute: sudo make install in {src_dir}")
     else:
+        print("[+] (3.3) Running configure...")
         with open(LOG_FILE, 'a') as log:
             subprocess.run(["./configure"], cwd=src_dir, stdout=log, stderr=log)
-        print("[+] (3.3) Running configure...")
 
+        print("[+] (3.4) Running make...")
         with open(LOG_FILE, 'a') as log:
             subprocess.run(["make"], cwd=src_dir, stdout=log, stderr=log)
-        print("[+] (3.4) Running make...")
 
+        print("[+] (3.5) Running make install...")
         with open(LOG_FILE, 'a') as log:
             subprocess.run(["sudo", "make", "install"], cwd=src_dir, stdout=log, stderr=log)
-
-    print("[+] (3.5) Running make install...")
 
 
 def run_new_openssh():
