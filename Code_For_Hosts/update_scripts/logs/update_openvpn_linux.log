@@ -3727,3 +3727,1433 @@ make[1]: Leaving directory '/home/admin1/BRACE/BRACE/update_scripts/openvpn-2.7.
 
 2026-04-18 12:30:11,796 [INFO] OpenVPN installed successfully!
 2026-04-18 12:30:11,796 [INFO] ==== Completed Successfully ====
+2026-04-18 15:19:01,354 [INFO] ==== OpenVPN Auto Installer Started ====
+2026-04-18 15:19:01,377 [INFO] Removing old OpenVPN (if exists)...
+2026-04-18 15:19:07,427 [DEBUG] 
+2026-04-18 15:19:07,427 [INFO] Old OpenVPN removed.
+2026-04-18 15:19:07,428 [INFO] Fetching latest OpenVPN release info...
+2026-04-18 15:19:07,452 [DEBUG] Starting new HTTPS connection (1): api.github.com:443
+2026-04-18 15:19:08,041 [DEBUG] https://api.github.com:443 "GET /repos/OpenVPN/openvpn/releases/latest HTTP/1.1" 200 2464
+2026-04-18 15:19:08,043 [DEBUG] Starting new HTTPS connection (1): api.github.com:443
+2026-04-18 15:19:08,488 [DEBUG] https://api.github.com:443 "GET /repos/OpenVPN/openvpn/releases/303781751/assets HTTP/1.1" 200 741
+2026-04-18 15:19:08,491 [INFO] Downloading openvpn-2.7.1.tar.gz...
+2026-04-18 15:19:09,672 [DEBUG] 
+2026-04-18 15:19:09,672 [INFO] Downloaded openvpn-2.7.1.tar.gz
+2026-04-18 15:19:09,674 [INFO] Starting OpenVPN installation...
+2026-04-18 15:19:09,674 [INFO] Installing dependencies...
+2026-04-18 15:19:30,279 [DEBUG] Hit:1 https://archive.ubuntu.com/ubuntu noble InRelease
+Hit:2 https://security.ubuntu.com/ubuntu noble-security InRelease
+Get:3 https://archive.ubuntu.com/ubuntu noble-updates InRelease [126 kB]
+Hit:4 https://archive.ubuntu.com/ubuntu noble-backports InRelease
+Get:5 https://archive.ubuntu.com/ubuntu noble-updates/main amd64 Packages [1,901 kB]
+Get:6 https://archive.ubuntu.com/ubuntu noble-updates/universe amd64 Packages [1,666 kB]
+Fetched 3,694 kB in 4s (1,040 kB/s)
+Reading package lists...
+Building dependency tree...
+Reading state information...
+6 packages can be upgraded. Run 'apt list --upgradable' to see them.
+
+2026-04-18 15:19:54,283 [DEBUG] Reading package lists...
+Building dependency tree...
+Reading state information...
+Calculating upgrade...
+The following packages were automatically installed and are no longer required:
+  libgl1-amber-dri libglapi-mesa libllvm17t64 python3-netifaces
+Use 'sudo apt autoremove' to remove them.
+Get more security updates through Ubuntu Pro with 'esm-apps' enabled:
+  libmagickcore-6.q16-7t64 imagemagick libmagickcore-6.q16-7-extra
+  imagemagick-6.q16 imagemagick-6-common libmagickwand-6.q16-7t64
+Learn more about Ubuntu Pro at https://ubuntu.com/pro
+The following packages have been kept back:
+  libgl1-amber-dri libglapi-mesa
+The following packages will be upgraded:
+  gir1.2-mutter-14 libmutter-14-0 mutter-common mutter-common-bin
+4 upgraded, 0 newly installed, 0 to remove and 2 not upgraded.
+Need to get 1,631 kB of archives.
+After this operation, 19.5 kB of additional disk space will be used.
+Get:1 https://archive.ubuntu.com/ubuntu noble-updates/main amd64 mutter-common all 46.2-1ubuntu0.24.04.15 [50.5 kB]
+Get:2 https://archive.ubuntu.com/ubuntu noble-updates/main amd64 gir1.2-mutter-14 amd64 46.2-1ubuntu0.24.04.15 [131 kB]
+Get:3 https://archive.ubuntu.com/ubuntu noble-updates/main amd64 libmutter-14-0 amd64 46.2-1ubuntu0.24.04.15 [1,395 kB]
+Get:4 https://archive.ubuntu.com/ubuntu noble-updates/main amd64 mutter-common-bin amd64 46.2-1ubuntu0.24.04.15 [53.7 kB]
+Fetched 1,631 kB in 3s (512 kB/s)
+(Reading database ... 
+(Reading database ... 5%
+(Reading database ... 10%
+(Reading database ... 15%
+(Reading database ... 20%
+(Reading database ... 25%
+(Reading database ... 30%
+(Reading database ... 35%
+(Reading database ... 40%
+(Reading database ... 45%
+(Reading database ... 50%
+(Reading database ... 55%
+(Reading database ... 60%
+(Reading database ... 65%
+(Reading database ... 70%
+(Reading database ... 75%
+(Reading database ... 80%
+(Reading database ... 85%
+(Reading database ... 90%
+(Reading database ... 95%
+(Reading database ... 100%
+(Reading database ... 195852 files and directories currently installed.)
+Preparing to unpack .../mutter-common_46.2-1ubuntu0.24.04.15_all.deb ...
+Unpacking mutter-common (46.2-1ubuntu0.24.04.15) over (46.2-1ubuntu0.24.04.1) ...
+Preparing to unpack .../gir1.2-mutter-14_46.2-1ubuntu0.24.04.15_amd64.deb ...
+Unpacking gir1.2-mutter-14:amd64 (46.2-1ubuntu0.24.04.15) over (46.2-1ubuntu0.24.04.1) ...
+Preparing to unpack .../libmutter-14-0_46.2-1ubuntu0.24.04.15_amd64.deb ...
+Unpacking libmutter-14-0:amd64 (46.2-1ubuntu0.24.04.15) over (46.2-1ubuntu0.24.04.1) ...
+Preparing to unpack .../mutter-common-bin_46.2-1ubuntu0.24.04.15_amd64.deb ...
+Unpacking mutter-common-bin (46.2-1ubuntu0.24.04.15) over (46.2-1ubuntu0.24.04.1) ...
+Setting up mutter-common (46.2-1ubuntu0.24.04.15) ...
+Setting up mutter-common-bin (46.2-1ubuntu0.24.04.15) ...
+Processing triggers for libc-bin (2.39-0ubuntu8.7) ...
+Processing triggers for man-db (2.12.0-4build2) ...
+Processing triggers for libglib2.0-0t64:amd64 (2.80.0-6ubuntu3.8) ...
+Setting up libmutter-14-0:amd64 (46.2-1ubuntu0.24.04.15) ...
+Setting up gir1.2-mutter-14:amd64 (46.2-1ubuntu0.24.04.15) ...
+Processing triggers for libc-bin (2.39-0ubuntu8.7) ...
+
+2026-04-18 15:19:54,283 [INFO] Installing libnl-3-dev...
+2026-04-18 15:19:55,881 [DEBUG] Reading package lists...
+Building dependency tree...
+Reading state information...
+libnl-3-dev is already the newest version (3.7.0-0.3build1.1).
+The following packages were automatically installed and are no longer required:
+  libgl1-amber-dri libglapi-mesa libllvm17t64 python3-netifaces
+Use 'sudo apt autoremove' to remove them.
+0 upgraded, 0 newly installed, 0 to remove and 2 not upgraded.
+
+2026-04-18 15:19:55,881 [INFO] Installing libnl-genl-3-dev...
+2026-04-18 15:19:56,924 [DEBUG] Reading package lists...
+Building dependency tree...
+Reading state information...
+libnl-genl-3-dev is already the newest version (3.7.0-0.3build1.1).
+The following packages were automatically installed and are no longer required:
+  libgl1-amber-dri libglapi-mesa libllvm17t64 python3-netifaces
+Use 'sudo apt autoremove' to remove them.
+0 upgraded, 0 newly installed, 0 to remove and 2 not upgraded.
+
+2026-04-18 15:19:56,924 [INFO] Installing pkg-config...
+2026-04-18 15:19:57,941 [DEBUG] Reading package lists...
+Building dependency tree...
+Reading state information...
+pkg-config is already the newest version (1.8.1-2build1).
+The following packages were automatically installed and are no longer required:
+  libgl1-amber-dri libglapi-mesa libllvm17t64 python3-netifaces
+Use 'sudo apt autoremove' to remove them.
+0 upgraded, 0 newly installed, 0 to remove and 2 not upgraded.
+
+2026-04-18 15:19:57,942 [INFO] Installing libcap-ng-dev...
+2026-04-18 15:19:58,960 [DEBUG] Reading package lists...
+Building dependency tree...
+Reading state information...
+libcap-ng-dev is already the newest version (0.8.4-2build2).
+The following packages were automatically installed and are no longer required:
+  libgl1-amber-dri libglapi-mesa libllvm17t64 python3-netifaces
+Use 'sudo apt autoremove' to remove them.
+0 upgraded, 0 newly installed, 0 to remove and 2 not upgraded.
+
+2026-04-18 15:19:58,960 [INFO] Installing liblz4-dev...
+2026-04-18 15:19:59,974 [DEBUG] Reading package lists...
+Building dependency tree...
+Reading state information...
+liblz4-dev is already the newest version (1.9.4-1build1.1).
+The following packages were automatically installed and are no longer required:
+  libgl1-amber-dri libglapi-mesa libllvm17t64 python3-netifaces
+Use 'sudo apt autoremove' to remove them.
+0 upgraded, 0 newly installed, 0 to remove and 2 not upgraded.
+
+2026-04-18 15:19:59,975 [INFO] Installing liblzo2-dev...
+2026-04-18 15:20:00,984 [DEBUG] Reading package lists...
+Building dependency tree...
+Reading state information...
+liblzo2-dev is already the newest version (2.10-2build4).
+The following packages were automatically installed and are no longer required:
+  libgl1-amber-dri libglapi-mesa libllvm17t64 python3-netifaces
+Use 'sudo apt autoremove' to remove them.
+0 upgraded, 0 newly installed, 0 to remove and 2 not upgraded.
+
+2026-04-18 15:20:00,985 [INFO] Installing libpam0g-dev...
+2026-04-18 15:20:02,012 [DEBUG] Reading package lists...
+Building dependency tree...
+Reading state information...
+libpam0g-dev is already the newest version (1.5.3-5ubuntu5.5).
+The following packages were automatically installed and are no longer required:
+  libgl1-amber-dri libglapi-mesa libllvm17t64 python3-netifaces
+Use 'sudo apt autoremove' to remove them.
+0 upgraded, 0 newly installed, 0 to remove and 2 not upgraded.
+
+2026-04-18 15:20:02,013 [INFO] Installing libssl-dev...
+2026-04-18 15:20:03,016 [DEBUG] Reading package lists...
+Building dependency tree...
+Reading state information...
+libssl-dev is already the newest version (3.0.13-0ubuntu3.9).
+The following packages were automatically installed and are no longer required:
+  libgl1-amber-dri libglapi-mesa libllvm17t64 python3-netifaces
+Use 'sudo apt autoremove' to remove them.
+0 upgraded, 0 newly installed, 0 to remove and 2 not upgraded.
+
+2026-04-18 15:20:03,016 [INFO] Dependencies installed.
+2026-04-18 15:20:03,016 [INFO] Extracting package...
+2026-04-18 15:20:03,863 [DEBUG] openvpn-2.7.1/
+openvpn-2.7.1/.gitattributes
+openvpn-2.7.1/.gitignore
+openvpn-2.7.1/AUTHORS
+openvpn-2.7.1/CMakeLists.txt
+openvpn-2.7.1/CMakePresets.json
+openvpn-2.7.1/CONTRIBUTING.rst
+openvpn-2.7.1/COPYING
+openvpn-2.7.1/COPYRIGHT.GPL
+openvpn-2.7.1/ChangeLog
+openvpn-2.7.1/Changes.rst
+openvpn-2.7.1/INSTALL
+openvpn-2.7.1/Makefile.am
+openvpn-2.7.1/Makefile.in
+openvpn-2.7.1/NEWS
+openvpn-2.7.1/PORTS
+openvpn-2.7.1/README
+openvpn-2.7.1/README.cmake.md
+openvpn-2.7.1/README.dco.md
+openvpn-2.7.1/README.ec
+openvpn-2.7.1/README.mbedtls
+openvpn-2.7.1/README.wolfssl
+openvpn-2.7.1/aclocal.m4
+openvpn-2.7.1/compat.m4
+openvpn-2.7.1/compile
+openvpn-2.7.1/config.guess
+openvpn-2.7.1/config.h.cmake.in
+openvpn-2.7.1/config.h.in
+openvpn-2.7.1/config.sub
+openvpn-2.7.1/configure
+openvpn-2.7.1/configure.ac
+openvpn-2.7.1/contrib/
+openvpn-2.7.1/contrib/OCSP_check/
+openvpn-2.7.1/contrib/OCSP_check/OCSP_check.sh
+openvpn-2.7.1/contrib/README
+openvpn-2.7.1/contrib/cmake/
+openvpn-2.7.1/contrib/cmake/git-version.py
+openvpn-2.7.1/contrib/cmake/parse-version.m4.py
+openvpn-2.7.1/contrib/extract-crl/
+openvpn-2.7.1/contrib/extract-crl/extractcrl.py
+openvpn-2.7.1/contrib/multilevel-init.patch
+openvpn-2.7.1/contrib/openvpn-fwmarkroute-1.00/
+openvpn-2.7.1/contrib/openvpn-fwmarkroute-1.00/README
+openvpn-2.7.1/contrib/openvpn-fwmarkroute-1.00/fwmarkroute.down
+openvpn-2.7.1/contrib/openvpn-fwmarkroute-1.00/fwmarkroute.up
+openvpn-2.7.1/contrib/vcpkg-manifests/
+openvpn-2.7.1/contrib/vcpkg-manifests/mingw/
+openvpn-2.7.1/contrib/vcpkg-manifests/mingw/vcpkg.json
+openvpn-2.7.1/contrib/vcpkg-manifests/windows/
+openvpn-2.7.1/contrib/vcpkg-manifests/windows/vcpkg.json
+openvpn-2.7.1/contrib/vcpkg-ports/
+openvpn-2.7.1/contrib/vcpkg-ports/pkcs11-helper/
+openvpn-2.7.1/contrib/vcpkg-ports/pkcs11-helper/config-w32-vc.h.in-indicate-OpenSSL.patch
+openvpn-2.7.1/contrib/vcpkg-ports/pkcs11-helper/nmake-compatibility-with-vcpkg-nmake.patch
+openvpn-2.7.1/contrib/vcpkg-ports/pkcs11-helper/pkcs11-helper-001-RFC7512.patch
+openvpn-2.7.1/contrib/vcpkg-ports/pkcs11-helper/portfile.cmake
+openvpn-2.7.1/contrib/vcpkg-ports/pkcs11-helper/vcpkg.json
+openvpn-2.7.1/contrib/vcpkg-triplets/
+openvpn-2.7.1/contrib/vcpkg-triplets/arm64-windows-ovpn.cmake
+openvpn-2.7.1/contrib/vcpkg-triplets/x64-mingw-ovpn.cmake
+openvpn-2.7.1/contrib/vcpkg-triplets/x64-windows-ovpn.cmake
+openvpn-2.7.1/contrib/vcpkg-triplets/x86-mingw-ovpn.cmake
+openvpn-2.7.1/contrib/vcpkg-triplets/x86-windows-ovpn.cmake
+openvpn-2.7.1/debug/
+openvpn-2.7.1/debug/doval
+openvpn-2.7.1/debug/dovalns
+openvpn-2.7.1/debug/valgrind-suppress
+openvpn-2.7.1/depcomp
+openvpn-2.7.1/distro/
+openvpn-2.7.1/distro/Makefile.am
+openvpn-2.7.1/distro/Makefile.in
+openvpn-2.7.1/distro/dns-scripts/
+openvpn-2.7.1/distro/dns-scripts/Makefile.am
+openvpn-2.7.1/distro/dns-scripts/Makefile.in
+openvpn-2.7.1/distro/dns-scripts/haikuos_file-dns-updown.sh
+openvpn-2.7.1/distro/dns-scripts/macos-dns-updown.sh
+openvpn-2.7.1/distro/dns-scripts/openresolv-dns-updown.sh
+openvpn-2.7.1/distro/dns-scripts/resolvconf_file-dns-updown.sh
+openvpn-2.7.1/distro/dns-scripts/systemd-dns-updown.sh
+openvpn-2.7.1/distro/systemd/
+openvpn-2.7.1/distro/systemd/Makefile.am
+openvpn-2.7.1/distro/systemd/Makefile.in
+openvpn-2.7.1/distro/systemd/README.systemd
+openvpn-2.7.1/distro/systemd/openvpn-client@.service.in
+openvpn-2.7.1/distro/systemd/openvpn-server@.service.in
+openvpn-2.7.1/distro/systemd/tmpfiles-openvpn.conf
+openvpn-2.7.1/doc/
+openvpn-2.7.1/doc/CMakeLists.txt
+openvpn-2.7.1/doc/Makefile.am
+openvpn-2.7.1/doc/Makefile.in
+openvpn-2.7.1/doc/README.man
+openvpn-2.7.1/doc/README.plugins
+openvpn-2.7.1/doc/android.txt
+openvpn-2.7.1/doc/doxygen/
+openvpn-2.7.1/doc/doxygen/Makefile.am
+openvpn-2.7.1/doc/doxygen/Makefile.in
+openvpn-2.7.1/doc/doxygen/doc_compression.h
+openvpn-2.7.1/doc/doxygen/doc_control_processor.h
+openvpn-2.7.1/doc/doxygen/doc_control_tls.h
+openvpn-2.7.1/doc/doxygen/doc_data_control.h
+openvpn-2.7.1/doc/doxygen/doc_data_crypto.h
+openvpn-2.7.1/doc/doxygen/doc_eventloop.h
+openvpn-2.7.1/doc/doxygen/doc_external_multiplexer.h
+openvpn-2.7.1/doc/doxygen/doc_fragmentation.h
+openvpn-2.7.1/doc/doxygen/doc_internal_multiplexer.h
+openvpn-2.7.1/doc/doxygen/doc_key_generation.h
+openvpn-2.7.1/doc/doxygen/doc_mainpage.h
+openvpn-2.7.1/doc/doxygen/doc_memory_management.h
+openvpn-2.7.1/doc/doxygen/doc_protocol_overview.h
+openvpn-2.7.1/doc/doxygen/doc_reliable.h
+openvpn-2.7.1/doc/doxygen/doc_tunnel_state.h
+openvpn-2.7.1/doc/doxygen/openvpn.doxyfile.in
+openvpn-2.7.1/doc/gui-notes.txt
+openvpn-2.7.1/doc/interactive-service-notes.rst
+openvpn-2.7.1/doc/keying-material-exporter.txt
+openvpn-2.7.1/doc/man-sections/
+openvpn-2.7.1/doc/man-sections/advanced-options.rst
+openvpn-2.7.1/doc/man-sections/cipher-negotiation.rst
+openvpn-2.7.1/doc/man-sections/client-options.rst
+openvpn-2.7.1/doc/man-sections/connection-profiles.rst
+openvpn-2.7.1/doc/man-sections/encryption-options.rst
+openvpn-2.7.1/doc/man-sections/example-fingerprint.rst
+openvpn-2.7.1/doc/man-sections/examples.rst
+openvpn-2.7.1/doc/man-sections/generic-options.rst
+openvpn-2.7.1/doc/man-sections/inline-files.rst
+openvpn-2.7.1/doc/man-sections/link-options.rst
+openvpn-2.7.1/doc/man-sections/log-options.rst
+openvpn-2.7.1/doc/man-sections/management-options.rst
+openvpn-2.7.1/doc/man-sections/network-config.rst
+openvpn-2.7.1/doc/man-sections/pkcs11-options.rst
+openvpn-2.7.1/doc/man-sections/plugin-options.rst
+openvpn-2.7.1/doc/man-sections/protocol-options.rst
+openvpn-2.7.1/doc/man-sections/proxy-options.rst
+openvpn-2.7.1/doc/man-sections/renegotiation.rst
+openvpn-2.7.1/doc/man-sections/script-options.rst
+openvpn-2.7.1/doc/man-sections/server-options.rst
+openvpn-2.7.1/doc/man-sections/signals.rst
+openvpn-2.7.1/doc/man-sections/tls-options.rst
+openvpn-2.7.1/doc/man-sections/unsupported-options.rst
+openvpn-2.7.1/doc/man-sections/virtual-routing-and-forwarding.rst
+openvpn-2.7.1/doc/man-sections/vpn-network-options.rst
+openvpn-2.7.1/doc/man-sections/windows-options.rst
+openvpn-2.7.1/doc/management-notes.txt
+openvpn-2.7.1/doc/openvpn-examples.5
+openvpn-2.7.1/doc/openvpn-examples.5.html
+openvpn-2.7.1/doc/openvpn-examples.5.rst
+openvpn-2.7.1/doc/openvpn.8
+openvpn-2.7.1/doc/openvpn.8.html
+openvpn-2.7.1/doc/openvpn.8.rst
+openvpn-2.7.1/doc/tests/
+openvpn-2.7.1/doc/tests/authentication-plugins.md
+openvpn-2.7.1/doc/tls-crypt-v2.txt
+openvpn-2.7.1/forked-test-driver
+openvpn-2.7.1/include/
+openvpn-2.7.1/include/Makefile.am
+openvpn-2.7.1/include/Makefile.in
+openvpn-2.7.1/include/openvpn-msg.h
+openvpn-2.7.1/include/openvpn-plugin.h
+openvpn-2.7.1/include/openvpn-plugin.h.in
+openvpn-2.7.1/install-sh
+openvpn-2.7.1/ltmain.sh
+openvpn-2.7.1/ltrc.inc
+openvpn-2.7.1/m4/
+openvpn-2.7.1/m4/ax_socklen_t.m4
+openvpn-2.7.1/m4/libtool.m4
+openvpn-2.7.1/m4/ltoptions.m4
+openvpn-2.7.1/m4/ltsugar.m4
+openvpn-2.7.1/m4/ltversion.m4
+openvpn-2.7.1/m4/lt~obsolete.m4
+openvpn-2.7.1/m4/pkg.m4
+openvpn-2.7.1/missing
+openvpn-2.7.1/sample/
+openvpn-2.7.1/sample/Makefile.am
+openvpn-2.7.1/sample/Makefile.in
+openvpn-2.7.1/sample/sample-config-files/
+openvpn-2.7.1/sample/sample-config-files/README
+openvpn-2.7.1/sample/sample-config-files/client.conf
+openvpn-2.7.1/sample/sample-config-files/firewall.sh
+openvpn-2.7.1/sample/sample-config-files/loopback-client
+openvpn-2.7.1/sample/sample-config-files/loopback-server
+openvpn-2.7.1/sample/sample-config-files/openvpn-shutdown.sh
+openvpn-2.7.1/sample/sample-config-files/openvpn-startup.sh
+openvpn-2.7.1/sample/sample-config-files/server.conf
+openvpn-2.7.1/sample/sample-keys/
+openvpn-2.7.1/sample/sample-keys/README
+openvpn-2.7.1/sample/sample-keys/ca.crt
+openvpn-2.7.1/sample/sample-keys/ca.key
+openvpn-2.7.1/sample/sample-keys/client-ec.crt
+openvpn-2.7.1/sample/sample-keys/client-ec.key
+openvpn-2.7.1/sample/sample-keys/client-pass.key
+openvpn-2.7.1/sample/sample-keys/client.crt
+openvpn-2.7.1/sample/sample-keys/client.key
+openvpn-2.7.1/sample/sample-keys/client.p12
+openvpn-2.7.1/sample/sample-keys/ffdhe2048.pem
+openvpn-2.7.1/sample/sample-keys/gen-sample-keys.sh
+openvpn-2.7.1/sample/sample-keys/openssl.cnf
+openvpn-2.7.1/sample/sample-keys/server-ec.crt
+openvpn-2.7.1/sample/sample-keys/server-ec.key
+openvpn-2.7.1/sample/sample-keys/server.crt
+openvpn-2.7.1/sample/sample-keys/server.key
+openvpn-2.7.1/sample/sample-keys/ta.key
+openvpn-2.7.1/sample/sample-plugins/
+openvpn-2.7.1/sample/sample-plugins/Makefile
+openvpn-2.7.1/sample/sample-plugins/Makefile.am
+openvpn-2.7.1/sample/sample-plugins/Makefile.in
+openvpn-2.7.1/sample/sample-plugins/Makefile.plugins
+openvpn-2.7.1/sample/sample-plugins/README
+openvpn-2.7.1/sample/sample-plugins/client-connect/
+openvpn-2.7.1/sample/sample-plugins/client-connect/README
+openvpn-2.7.1/sample/sample-plugins/client-connect/sample-client-connect.c
+openvpn-2.7.1/sample/sample-plugins/defer/
+openvpn-2.7.1/sample/sample-plugins/defer/multi-auth.c
+openvpn-2.7.1/sample/sample-plugins/defer/winbuild
+openvpn-2.7.1/sample/sample-plugins/keying-material-exporter-demo/
+openvpn-2.7.1/sample/sample-plugins/keying-material-exporter-demo/README
+openvpn-2.7.1/sample/sample-plugins/keying-material-exporter-demo/client.ovpn
+openvpn-2.7.1/sample/sample-plugins/keying-material-exporter-demo/http-client.py
+openvpn-2.7.1/sample/sample-plugins/keying-material-exporter-demo/http-server.py
+openvpn-2.7.1/sample/sample-plugins/keying-material-exporter-demo/keyingmaterialexporter.c
+openvpn-2.7.1/sample/sample-plugins/keying-material-exporter-demo/server.ovpn
+openvpn-2.7.1/sample/sample-plugins/log/
+openvpn-2.7.1/sample/sample-plugins/log/log.c
+openvpn-2.7.1/sample/sample-plugins/log/log_v3.c
+openvpn-2.7.1/sample/sample-plugins/log/winbuild
+openvpn-2.7.1/sample/sample-plugins/simple/
+openvpn-2.7.1/sample/sample-plugins/simple/base64.c
+openvpn-2.7.1/sample/sample-plugins/simple/simple.c
+openvpn-2.7.1/sample/sample-plugins/simple/simple.def
+openvpn-2.7.1/sample/sample-plugins/simple/winbuild
+openvpn-2.7.1/sample/sample-scripts/
+openvpn-2.7.1/sample/sample-scripts/auth-pam.pl
+openvpn-2.7.1/sample/sample-scripts/bridge-start
+openvpn-2.7.1/sample/sample-scripts/bridge-stop
+openvpn-2.7.1/sample/sample-scripts/totpauth.py
+openvpn-2.7.1/sample/sample-scripts/ucn.pl
+openvpn-2.7.1/sample/sample-scripts/verify-cn
+openvpn-2.7.1/src/
+openvpn-2.7.1/src/Makefile.am
+openvpn-2.7.1/src/Makefile.in
+openvpn-2.7.1/src/compat/
+openvpn-2.7.1/src/compat/Makefile.am
+openvpn-2.7.1/src/compat/Makefile.in
+openvpn-2.7.1/src/compat/compat-basename.c
+openvpn-2.7.1/src/compat/compat-daemon.c
+openvpn-2.7.1/src/compat/compat-dirname.c
+openvpn-2.7.1/src/compat/compat-gettimeofday.c
+openvpn-2.7.1/src/compat/compat-strsep.c
+openvpn-2.7.1/src/compat/compat.h
+openvpn-2.7.1/src/openvpn/
+openvpn-2.7.1/src/openvpn/Makefile.am
+openvpn-2.7.1/src/openvpn/Makefile.in
+openvpn-2.7.1/src/openvpn/argv.c
+openvpn-2.7.1/src/openvpn/argv.h
+openvpn-2.7.1/src/openvpn/auth_token.c
+openvpn-2.7.1/src/openvpn/auth_token.h
+openvpn-2.7.1/src/openvpn/base64.c
+openvpn-2.7.1/src/openvpn/base64.h
+openvpn-2.7.1/src/openvpn/basic.h
+openvpn-2.7.1/src/openvpn/buffer.c
+openvpn-2.7.1/src/openvpn/buffer.h
+openvpn-2.7.1/src/openvpn/circ_list.h
+openvpn-2.7.1/src/openvpn/clinat.c
+openvpn-2.7.1/src/openvpn/clinat.h
+openvpn-2.7.1/src/openvpn/common.h
+openvpn-2.7.1/src/openvpn/comp-lz4.c
+openvpn-2.7.1/src/openvpn/comp-lz4.h
+openvpn-2.7.1/src/openvpn/comp.c
+openvpn-2.7.1/src/openvpn/comp.h
+openvpn-2.7.1/src/openvpn/compstub.c
+openvpn-2.7.1/src/openvpn/console.c
+openvpn-2.7.1/src/openvpn/console.h
+openvpn-2.7.1/src/openvpn/console_builtin.c
+openvpn-2.7.1/src/openvpn/console_systemd.c
+openvpn-2.7.1/src/openvpn/crypto.c
+openvpn-2.7.1/src/openvpn/crypto.h
+openvpn-2.7.1/src/openvpn/crypto_backend.h
+openvpn-2.7.1/src/openvpn/crypto_epoch.c
+openvpn-2.7.1/src/openvpn/crypto_epoch.h
+openvpn-2.7.1/src/openvpn/crypto_mbedtls.c
+openvpn-2.7.1/src/openvpn/crypto_mbedtls.h
+openvpn-2.7.1/src/openvpn/crypto_mbedtls_legacy.c
+openvpn-2.7.1/src/openvpn/crypto_mbedtls_legacy.h
+openvpn-2.7.1/src/openvpn/crypto_openssl.c
+openvpn-2.7.1/src/openvpn/crypto_openssl.h
+openvpn-2.7.1/src/openvpn/cryptoapi.c
+openvpn-2.7.1/src/openvpn/cryptoapi.h
+openvpn-2.7.1/src/openvpn/dco.c
+openvpn-2.7.1/src/openvpn/dco.h
+openvpn-2.7.1/src/openvpn/dco_freebsd.c
+openvpn-2.7.1/src/openvpn/dco_freebsd.h
+openvpn-2.7.1/src/openvpn/dco_internal.h
+openvpn-2.7.1/src/openvpn/dco_linux.c
+openvpn-2.7.1/src/openvpn/dco_linux.h
+openvpn-2.7.1/src/openvpn/dco_win.c
+openvpn-2.7.1/src/openvpn/dco_win.h
+openvpn-2.7.1/src/openvpn/dhcp.c
+openvpn-2.7.1/src/openvpn/dhcp.h
+openvpn-2.7.1/src/openvpn/dns.c
+openvpn-2.7.1/src/openvpn/dns.h
+openvpn-2.7.1/src/openvpn/domain_helper.h
+openvpn-2.7.1/src/openvpn/env_set.c
+openvpn-2.7.1/src/openvpn/env_set.h
+openvpn-2.7.1/src/openvpn/errlevel.h
+openvpn-2.7.1/src/openvpn/error.c
+openvpn-2.7.1/src/openvpn/error.h
+openvpn-2.7.1/src/openvpn/event.c
+openvpn-2.7.1/src/openvpn/event.h
+openvpn-2.7.1/src/openvpn/fdmisc.c
+openvpn-2.7.1/src/openvpn/fdmisc.h
+openvpn-2.7.1/src/openvpn/forward.c
+openvpn-2.7.1/src/openvpn/forward.h
+openvpn-2.7.1/src/openvpn/fragment.c
+openvpn-2.7.1/src/openvpn/fragment.h
+openvpn-2.7.1/src/openvpn/gremlin.c
+openvpn-2.7.1/src/openvpn/gremlin.h
+openvpn-2.7.1/src/openvpn/helper.c
+openvpn-2.7.1/src/openvpn/helper.h
+openvpn-2.7.1/src/openvpn/httpdigest.c
+openvpn-2.7.1/src/openvpn/httpdigest.h
+openvpn-2.7.1/src/openvpn/init.c
+openvpn-2.7.1/src/openvpn/init.h
+openvpn-2.7.1/src/openvpn/integer.h
+openvpn-2.7.1/src/openvpn/interval.c
+openvpn-2.7.1/src/openvpn/interval.h
+openvpn-2.7.1/src/openvpn/list.c
+openvpn-2.7.1/src/openvpn/list.h
+openvpn-2.7.1/src/openvpn/lladdr.c
+openvpn-2.7.1/src/openvpn/lladdr.h
+openvpn-2.7.1/src/openvpn/lzo.c
+openvpn-2.7.1/src/openvpn/lzo.h
+openvpn-2.7.1/src/openvpn/manage.c
+openvpn-2.7.1/src/openvpn/manage.h
+openvpn-2.7.1/src/openvpn/mbedtls_compat.h
+openvpn-2.7.1/src/openvpn/mbuf.c
+openvpn-2.7.1/src/openvpn/mbuf.h
+openvpn-2.7.1/src/openvpn/memdbg.h
+openvpn-2.7.1/src/openvpn/misc.c
+openvpn-2.7.1/src/openvpn/misc.h
+openvpn-2.7.1/src/openvpn/mroute.c
+openvpn-2.7.1/src/openvpn/mroute.h
+openvpn-2.7.1/src/openvpn/mss.c
+openvpn-2.7.1/src/openvpn/mss.h
+openvpn-2.7.1/src/openvpn/mtcp.c
+openvpn-2.7.1/src/openvpn/mtcp.h
+openvpn-2.7.1/src/openvpn/mtu.c
+openvpn-2.7.1/src/openvpn/mtu.h
+openvpn-2.7.1/src/openvpn/mudp.c
+openvpn-2.7.1/src/openvpn/mudp.h
+openvpn-2.7.1/src/openvpn/multi.c
+openvpn-2.7.1/src/openvpn/multi.h
+openvpn-2.7.1/src/openvpn/multi_io.c
+openvpn-2.7.1/src/openvpn/multi_io.h
+openvpn-2.7.1/src/openvpn/networking.h
+openvpn-2.7.1/src/openvpn/networking_freebsd.c
+openvpn-2.7.1/src/openvpn/networking_iproute2.c
+openvpn-2.7.1/src/openvpn/networking_iproute2.h
+openvpn-2.7.1/src/openvpn/networking_sitnl.c
+openvpn-2.7.1/src/openvpn/networking_sitnl.h
+openvpn-2.7.1/src/openvpn/ntlm.c
+openvpn-2.7.1/src/openvpn/ntlm.h
+openvpn-2.7.1/src/openvpn/occ.c
+openvpn-2.7.1/src/openvpn/occ.h
+openvpn-2.7.1/src/openvpn/openssl_compat.h
+openvpn-2.7.1/src/openvpn/openvpn.c
+openvpn-2.7.1/src/openvpn/openvpn.h
+openvpn-2.7.1/src/openvpn/openvpn.manifest
+openvpn-2.7.1/src/openvpn/openvpn_win32_resources.rc
+openvpn-2.7.1/src/openvpn/options.c
+openvpn-2.7.1/src/openvpn/options.h
+openvpn-2.7.1/src/openvpn/options_parse.c
+openvpn-2.7.1/src/openvpn/options_util.c
+openvpn-2.7.1/src/openvpn/options_util.h
+openvpn-2.7.1/src/openvpn/otime.c
+openvpn-2.7.1/src/openvpn/otime.h
+openvpn-2.7.1/src/openvpn/ovpn_dco_freebsd.h
+openvpn-2.7.1/src/openvpn/ovpn_dco_linux.h
+openvpn-2.7.1/src/openvpn/ovpn_dco_win.h
+openvpn-2.7.1/src/openvpn/packet_id.c
+openvpn-2.7.1/src/openvpn/packet_id.h
+openvpn-2.7.1/src/openvpn/ping.c
+openvpn-2.7.1/src/openvpn/ping.h
+openvpn-2.7.1/src/openvpn/pkcs11.c
+openvpn-2.7.1/src/openvpn/pkcs11.h
+openvpn-2.7.1/src/openvpn/pkcs11_backend.h
+openvpn-2.7.1/src/openvpn/pkcs11_mbedtls.c
+openvpn-2.7.1/src/openvpn/pkcs11_openssl.c
+openvpn-2.7.1/src/openvpn/platform.c
+openvpn-2.7.1/src/openvpn/platform.h
+openvpn-2.7.1/src/openvpn/plugin.c
+openvpn-2.7.1/src/openvpn/plugin.h
+openvpn-2.7.1/src/openvpn/pool.c
+openvpn-2.7.1/src/openvpn/pool.h
+openvpn-2.7.1/src/openvpn/proto.c
+openvpn-2.7.1/src/openvpn/proto.h
+openvpn-2.7.1/src/openvpn/proxy.c
+openvpn-2.7.1/src/openvpn/proxy.h
+openvpn-2.7.1/src/openvpn/ps.c
+openvpn-2.7.1/src/openvpn/ps.h
+openvpn-2.7.1/src/openvpn/push.c
+openvpn-2.7.1/src/openvpn/push.h
+openvpn-2.7.1/src/openvpn/push_util.c
+openvpn-2.7.1/src/openvpn/pushlist.h
+openvpn-2.7.1/src/openvpn/reflect_filter.c
+openvpn-2.7.1/src/openvpn/reflect_filter.h
+openvpn-2.7.1/src/openvpn/reliable.c
+openvpn-2.7.1/src/openvpn/reliable.h
+openvpn-2.7.1/src/openvpn/route.c
+openvpn-2.7.1/src/openvpn/route.h
+openvpn-2.7.1/src/openvpn/run_command.c
+openvpn-2.7.1/src/openvpn/run_command.h
+openvpn-2.7.1/src/openvpn/schedule.c
+openvpn-2.7.1/src/openvpn/schedule.h
+openvpn-2.7.1/src/openvpn/session_id.c
+openvpn-2.7.1/src/openvpn/session_id.h
+openvpn-2.7.1/src/openvpn/shaper.c
+openvpn-2.7.1/src/openvpn/shaper.h
+openvpn-2.7.1/src/openvpn/sig.c
+openvpn-2.7.1/src/openvpn/sig.h
+openvpn-2.7.1/src/openvpn/socket.c
+openvpn-2.7.1/src/openvpn/socket.h
+openvpn-2.7.1/src/openvpn/socket_util.c
+openvpn-2.7.1/src/openvpn/socket_util.h
+openvpn-2.7.1/src/openvpn/socks.c
+openvpn-2.7.1/src/openvpn/socks.h
+openvpn-2.7.1/src/openvpn/ssl.c
+openvpn-2.7.1/src/openvpn/ssl.h
+openvpn-2.7.1/src/openvpn/ssl_backend.h
+openvpn-2.7.1/src/openvpn/ssl_common.h
+openvpn-2.7.1/src/openvpn/ssl_mbedtls.c
+openvpn-2.7.1/src/openvpn/ssl_mbedtls.h
+openvpn-2.7.1/src/openvpn/ssl_ncp.c
+openvpn-2.7.1/src/openvpn/ssl_ncp.h
+openvpn-2.7.1/src/openvpn/ssl_openssl.c
+openvpn-2.7.1/src/openvpn/ssl_openssl.h
+openvpn-2.7.1/src/openvpn/ssl_pkt.c
+openvpn-2.7.1/src/openvpn/ssl_pkt.h
+openvpn-2.7.1/src/openvpn/ssl_util.c
+openvpn-2.7.1/src/openvpn/ssl_util.h
+openvpn-2.7.1/src/openvpn/ssl_verify.c
+openvpn-2.7.1/src/openvpn/ssl_verify.h
+openvpn-2.7.1/src/openvpn/ssl_verify_backend.h
+openvpn-2.7.1/src/openvpn/ssl_verify_mbedtls.c
+openvpn-2.7.1/src/openvpn/ssl_verify_mbedtls.h
+openvpn-2.7.1/src/openvpn/ssl_verify_openssl.c
+openvpn-2.7.1/src/openvpn/ssl_verify_openssl.h
+openvpn-2.7.1/src/openvpn/status.c
+openvpn-2.7.1/src/openvpn/status.h
+openvpn-2.7.1/src/openvpn/syshead.h
+openvpn-2.7.1/src/openvpn/tls_crypt.c
+openvpn-2.7.1/src/openvpn/tls_crypt.h
+openvpn-2.7.1/src/openvpn/tun.c
+openvpn-2.7.1/src/openvpn/tun.h
+openvpn-2.7.1/src/openvpn/tun_afunix.c
+openvpn-2.7.1/src/openvpn/tun_afunix.h
+openvpn-2.7.1/src/openvpn/vlan.c
+openvpn-2.7.1/src/openvpn/vlan.h
+openvpn-2.7.1/src/openvpn/wfp_block.c
+openvpn-2.7.1/src/openvpn/wfp_block.h
+openvpn-2.7.1/src/openvpn/win32-util.c
+openvpn-2.7.1/src/openvpn/win32-util.h
+openvpn-2.7.1/src/openvpn/win32.c
+openvpn-2.7.1/src/openvpn/win32.h
+openvpn-2.7.1/src/openvpn/xkey_common.h
+openvpn-2.7.1/src/openvpn/xkey_helper.c
+openvpn-2.7.1/src/openvpn/xkey_provider.c
+openvpn-2.7.1/src/openvpnmsica/
+openvpn-2.7.1/src/openvpnmsica/CMakeLists.txt
+openvpn-2.7.1/src/openvpnmsica/Makefile.am
+openvpn-2.7.1/src/openvpnmsica/Makefile.in
+openvpn-2.7.1/src/openvpnmsica/dllmain.c
+openvpn-2.7.1/src/openvpnmsica/msica_arg.c
+openvpn-2.7.1/src/openvpnmsica/msica_arg.h
+openvpn-2.7.1/src/openvpnmsica/msiex.c
+openvpn-2.7.1/src/openvpnmsica/msiex.h
+openvpn-2.7.1/src/openvpnmsica/openvpnmsica.c
+openvpn-2.7.1/src/openvpnmsica/openvpnmsica.h
+openvpn-2.7.1/src/openvpnmsica/openvpnmsica_resources.rc
+openvpn-2.7.1/src/openvpnserv/
+openvpn-2.7.1/src/openvpnserv/CMakeLists.txt
+openvpn-2.7.1/src/openvpnserv/Makefile.am
+openvpn-2.7.1/src/openvpnserv/Makefile.in
+openvpn-2.7.1/src/openvpnserv/common.c
+openvpn-2.7.1/src/openvpnserv/interactive.c
+openvpn-2.7.1/src/openvpnserv/openvpnserv_resources.rc
+openvpn-2.7.1/src/openvpnserv/service.c
+openvpn-2.7.1/src/openvpnserv/service.h
+openvpn-2.7.1/src/openvpnserv/validate.c
+openvpn-2.7.1/src/openvpnserv/validate.h
+openvpn-2.7.1/src/plugins/
+openvpn-2.7.1/src/plugins/Makefile.am
+openvpn-2.7.1/src/plugins/Makefile.in
+openvpn-2.7.1/src/plugins/auth-pam/
+openvpn-2.7.1/src/plugins/auth-pam/Makefile.am
+openvpn-2.7.1/src/plugins/auth-pam/Makefile.in
+openvpn-2.7.1/src/plugins/auth-pam/README.auth-pam
+openvpn-2.7.1/src/plugins/auth-pam/auth-pam.c
+openvpn-2.7.1/src/plugins/auth-pam/auth-pam.exports
+openvpn-2.7.1/src/plugins/auth-pam/pamdl.c
+openvpn-2.7.1/src/plugins/auth-pam/pamdl.h
+openvpn-2.7.1/src/plugins/auth-pam/utils.c
+openvpn-2.7.1/src/plugins/auth-pam/utils.h
+openvpn-2.7.1/src/plugins/down-root/
+openvpn-2.7.1/src/plugins/down-root/Makefile.am
+openvpn-2.7.1/src/plugins/down-root/Makefile.in
+openvpn-2.7.1/src/plugins/down-root/README.down-root
+openvpn-2.7.1/src/plugins/down-root/down-root.c
+openvpn-2.7.1/src/plugins/down-root/down-root.exports
+openvpn-2.7.1/src/tapctl/
+openvpn-2.7.1/src/tapctl/CMakeLists.txt
+openvpn-2.7.1/src/tapctl/Makefile.am
+openvpn-2.7.1/src/tapctl/Makefile.in
+openvpn-2.7.1/src/tapctl/basic.h
+openvpn-2.7.1/src/tapctl/error.c
+openvpn-2.7.1/src/tapctl/error.h
+openvpn-2.7.1/src/tapctl/main.c
+openvpn-2.7.1/src/tapctl/tap.c
+openvpn-2.7.1/src/tapctl/tap.h
+openvpn-2.7.1/src/tapctl/tapctl.exe.manifest
+openvpn-2.7.1/src/tapctl/tapctl_resources.rc
+openvpn-2.7.1/test-driver
+openvpn-2.7.1/tests/
+openvpn-2.7.1/tests/Makefile.am
+openvpn-2.7.1/tests/Makefile.in
+openvpn-2.7.1/tests/ntlm_support.c
+openvpn-2.7.1/tests/t_client.rc-sample
+openvpn-2.7.1/tests/t_client.sh.in
+openvpn-2.7.1/tests/t_cltsrv-down.sh
+openvpn-2.7.1/tests/t_cltsrv.sh
+openvpn-2.7.1/tests/t_lpback.sh
+openvpn-2.7.1/tests/t_net.sh
+openvpn-2.7.1/tests/t_server_null.sh
+openvpn-2.7.1/tests/t_server_null_client.sh
+openvpn-2.7.1/tests/t_server_null_default.rc
+openvpn-2.7.1/tests/t_server_null_server.sh
+openvpn-2.7.1/tests/unit_tests/
+openvpn-2.7.1/tests/unit_tests/Makefile.am
+openvpn-2.7.1/tests/unit_tests/Makefile.in
+openvpn-2.7.1/tests/unit_tests/README.md
+openvpn-2.7.1/tests/unit_tests/example_test/
+openvpn-2.7.1/tests/unit_tests/example_test/Makefile.am
+openvpn-2.7.1/tests/unit_tests/example_test/Makefile.in
+openvpn-2.7.1/tests/unit_tests/example_test/README.md
+openvpn-2.7.1/tests/unit_tests/example_test/test.c
+openvpn-2.7.1/tests/unit_tests/example_test/test2.c
+openvpn-2.7.1/tests/unit_tests/openvpn/
+openvpn-2.7.1/tests/unit_tests/openvpn/Makefile.am
+openvpn-2.7.1/tests/unit_tests/openvpn/Makefile.in
+openvpn-2.7.1/tests/unit_tests/openvpn/cert_data.h
+openvpn-2.7.1/tests/unit_tests/openvpn/input/
+openvpn-2.7.1/tests/unit_tests/openvpn/input/appears_empty.txt
+openvpn-2.7.1/tests/unit_tests/openvpn/input/empty.txt
+openvpn-2.7.1/tests/unit_tests/openvpn/input/leak_suppr.txt
+openvpn-2.7.1/tests/unit_tests/openvpn/input/user_only.txt
+openvpn-2.7.1/tests/unit_tests/openvpn/input/user_pass.txt
+openvpn-2.7.1/tests/unit_tests/openvpn/mock_get_random.c
+openvpn-2.7.1/tests/unit_tests/openvpn/mock_management.c
+openvpn-2.7.1/tests/unit_tests/openvpn/mock_msg.c
+openvpn-2.7.1/tests/unit_tests/openvpn/mock_msg.h
+openvpn-2.7.1/tests/unit_tests/openvpn/mock_ssl_dependencies.c
+openvpn-2.7.1/tests/unit_tests/openvpn/mock_win32_execve.c
+openvpn-2.7.1/tests/unit_tests/openvpn/pkey_test_utils.c
+openvpn-2.7.1/tests/unit_tests/openvpn/test_argv.c
+openvpn-2.7.1/tests/unit_tests/openvpn/test_auth_token.c
+openvpn-2.7.1/tests/unit_tests/openvpn/test_buffer.c
+openvpn-2.7.1/tests/unit_tests/openvpn/test_common.h
+openvpn-2.7.1/tests/unit_tests/openvpn/test_crypto.c
+openvpn-2.7.1/tests/unit_tests/openvpn/test_cryptoapi.c
+openvpn-2.7.1/tests/unit_tests/openvpn/test_dhcp.c
+openvpn-2.7.1/tests/unit_tests/openvpn/test_mbuf.c
+openvpn-2.7.1/tests/unit_tests/openvpn/test_misc.c
+openvpn-2.7.1/tests/unit_tests/openvpn/test_ncp.c
+openvpn-2.7.1/tests/unit_tests/openvpn/test_networking.c
+openvpn-2.7.1/tests/unit_tests/openvpn/test_options_parse.c
+openvpn-2.7.1/tests/unit_tests/openvpn/test_packet_id.c
+openvpn-2.7.1/tests/unit_tests/openvpn/test_pkcs11.c
+openvpn-2.7.1/tests/unit_tests/openvpn/test_pkt.c
+openvpn-2.7.1/tests/unit_tests/openvpn/test_provider.c
+openvpn-2.7.1/tests/unit_tests/openvpn/test_push_update_msg.c
+openvpn-2.7.1/tests/unit_tests/openvpn/test_socket.c
+openvpn-2.7.1/tests/unit_tests/openvpn/test_ssl.c
+openvpn-2.7.1/tests/unit_tests/openvpn/test_tls_crypt.c
+openvpn-2.7.1/tests/unit_tests/openvpn/test_user_pass.c
+openvpn-2.7.1/tests/unit_tests/openvpnserv/
+openvpn-2.7.1/tests/unit_tests/openvpnserv/Makefile.am
+openvpn-2.7.1/tests/unit_tests/openvpnserv/Makefile.in
+openvpn-2.7.1/tests/unit_tests/plugins/
+openvpn-2.7.1/tests/unit_tests/plugins/Makefile.am
+openvpn-2.7.1/tests/unit_tests/plugins/Makefile.in
+openvpn-2.7.1/tests/unit_tests/plugins/auth-pam/
+openvpn-2.7.1/tests/unit_tests/plugins/auth-pam/Makefile.am
+openvpn-2.7.1/tests/unit_tests/plugins/auth-pam/Makefile.in
+openvpn-2.7.1/tests/unit_tests/plugins/auth-pam/test_search_and_replace.c
+openvpn-2.7.1/tests/update_t_client_ips.sh
+openvpn-2.7.1/version.m4
+
+2026-04-18 15:20:03,864 [INFO] Configuring build...
+2026-04-18 15:20:23,463 [DEBUG] checking for a BSD-compatible install... /usr/bin/install -c
+checking whether build environment is sane... yes
+checking for a race-free mkdir -p... /usr/bin/mkdir -p
+checking for gawk... no
+checking for mawk... mawk
+checking whether make sets $(MAKE)... yes
+checking whether make supports nested variables... yes
+checking whether make supports nested variables... (cached) yes
+checking build system type... x86_64-pc-linux-gnu
+checking host system type... x86_64-pc-linux-gnu
+checking whether make supports the include directive... yes (GNU style)
+checking for gcc... gcc
+checking whether the C compiler works... yes
+checking for C compiler default output file name... a.out
+checking for suffix of executables... 
+checking whether we are cross compiling... no
+checking for suffix of object files... o
+checking whether the compiler supports GNU C... yes
+checking whether gcc accepts -g... yes
+checking for gcc option to enable C11 features... none needed
+checking whether gcc understands -c and -o together... yes
+checking dependency style of gcc... gcc3
+checking for stdio.h... yes
+checking for stdlib.h... yes
+checking for string.h... yes
+checking for inttypes.h... yes
+checking for stdint.h... yes
+checking for strings.h... yes
+checking for sys/stat.h... yes
+checking for sys/types.h... yes
+checking for unistd.h... yes
+checking for wchar.h... yes
+checking for minix/config.h... no
+checking for vfork.h... no
+checking whether it is safe to define __EXTENSIONS__... yes
+checking whether _XOPEN_SOURCE should be defined... no
+checking for pkg-config... /usr/bin/pkg-config
+checking pkg-config is at least version 0.9.0... yes
+checking for gcc... (cached) gcc
+checking whether the compiler supports GNU C... (cached) yes
+checking whether gcc accepts -g... (cached) yes
+checking for gcc option to enable C11 features... (cached) none needed
+checking whether gcc understands -c and -o together... (cached) yes
+checking dependency style of gcc... (cached) gcc3
+checking how to run the C preprocessor... gcc -E
+checking whether ln -s works... yes
+checking for a sed that does not truncate output... /usr/bin/sed
+checking whether make sets $(MAKE)... (cached) yes
+checking for ifconfig... no
+checking for route... no
+checking for ip... /usr/sbin/ip
+checking for systemd-ask-password... /usr/bin/systemd-ask-password
+checking for netstat... no
+checking for git... git
+checking for windmc... no
+checking for mc.exe... no
+checking for rst2man... no
+checking for rst2man.py... no
+checking for rst2html... no
+checking for rst2html.py... no
+checking how to print strings... printf
+checking for a sed that does not truncate output... (cached) /usr/bin/sed
+checking for grep that handles long lines and -e... /usr/bin/grep
+checking for egrep... /usr/bin/grep -E
+checking for fgrep... /usr/bin/grep -F
+checking for ld used by gcc... /usr/bin/ld
+checking if the linker (/usr/bin/ld) is GNU ld... yes
+checking for BSD- or MS-compatible name lister (nm)... /usr/bin/nm -B
+checking the name lister (/usr/bin/nm -B) interface... BSD nm
+checking the maximum length of command line arguments... 1572864
+checking how to convert x86_64-pc-linux-gnu file names to x86_64-pc-linux-gnu format... func_convert_file_noop
+checking how to convert x86_64-pc-linux-gnu file names to toolchain format... func_convert_file_noop
+checking for /usr/bin/ld option to reload object files... -r
+checking for file... file
+checking for objdump... objdump
+checking how to recognize dependent libraries... pass_all
+checking for dlltool... no
+checking how to associate runtime and link libraries... printf %s\n
+checking for ar... ar
+checking for archiver @FILE support... @
+checking for strip... strip
+checking for ranlib... ranlib
+checking command to parse /usr/bin/nm -B output from gcc object... ok
+checking for sysroot... no
+checking for a working dd... /usr/bin/dd
+checking how to truncate binary pipes... /usr/bin/dd bs=4096 count=1
+checking for mt... mt
+checking if mt is a manifest tool... no
+checking for dlfcn.h... yes
+checking for objdir... .libs
+checking if gcc supports -fno-rtti -fno-exceptions... no
+checking for gcc option to produce PIC... -fPIC -DPIC
+checking if gcc PIC flag -fPIC -DPIC works... yes
+checking if gcc static flag -static works... yes
+checking if gcc supports -c -o file.o... yes
+checking if gcc supports -c -o file.o... (cached) yes
+checking whether the gcc linker (/usr/bin/ld -m elf_x86_64) supports shared libraries... yes
+checking whether -lc should be explicitly linked in... no
+checking dynamic linker characteristics... GNU/Linux ld.so
+checking how to hardcode library paths into programs... immediate
+checking whether stripping libraries is possible... yes
+checking if libtool supports shared libraries... yes
+checking whether to build shared libraries... yes
+checking whether to build static libraries... yes
+checking for windres... no
+checking for inline... inline
+checking for socklen_t... yes
+checking for fcntl.h... yes
+checking for io.h... no
+checking for sys/types.h... (cached) yes
+checking for sys/socket.h... yes
+checking for unistd.h... (cached) yes
+checking for dlfcn.h... (cached) yes
+checking for netinet/in.h... yes
+checking for netinet/tcp.h... yes
+checking for arpa/inet.h... yes
+checking for netdb.h... yes
+checking for sys/time.h... yes
+checking for sys/ioctl.h... yes
+checking for sys/stat.h... (cached) yes
+checking for sys/mman.h... yes
+checking for sys/file.h... yes
+checking for sys/wait.h... yes
+checking for libgen.h... yes
+checking for stropts.h... no
+checking for syslog.h... yes
+checking for pwd.h... yes
+checking for grp.h... yes
+checking for termios.h... yes
+checking for sys/sockio.h... no
+checking for sys/uio.h... yes
+checking for poll.h... yes
+checking for sys/epoll.h... yes
+checking for err.h... yes
+checking for net/if.h... yes
+checking for netinet/ip.h... yes
+checking for resolv.h... yes
+checking for sys/un.h... yes
+checking for sys/kern_control.h... no
+checking for struct msghdr... yes
+checking for struct cmsghdr... yes
+checking for struct in_pktinfo... yes
+checking for sa_family_t... yes
+checking for struct in_pktinfo.ipi_spec_dst... yes
+checking for struct sockaddr_in6... yes
+checking linker supports --wrap... yes
+checking for pid_t... yes
+checking for fork... yes
+checking for vfork... yes
+checking for working fork... yes
+checking for working vfork... (cached) yes
+checking for daemon... yes
+checking for chroot... yes
+checking for getpwnam... yes
+checking for setuid... yes
+checking for nice... yes
+checking for dup... yes
+checking for dup2... yes
+checking for syslog... yes
+checking for openlog... yes
+checking for mlockall... yes
+checking for getrlimit... yes
+checking for getgrnam... yes
+checking for setgid... yes
+checking for setgroups... yes
+checking for flock... yes
+checking for gettimeofday... yes
+checking for setsid... yes
+checking for chdir... yes
+checking for chsize... no
+checking for ftruncate... yes
+checking for execve... yes
+checking for getpeereid... no
+checking for basename... yes
+checking for dirname... yes
+checking for epoll_create... yes
+checking for strsep... yes
+checking for dlopen in -ldl... yes
+checking for inet_ntoa in -lnsl... no
+checking for socket in -lsocket... no
+checking for gethostbyname in -lresolv... yes
+checking for sendmsg... yes
+checking for recvmsg... yes
+checking for library containing __res_init... none required
+checking for net/if_tun.h... no
+checking for net/tun/if_tun.h... no
+checking for linux/if_tun.h... yes
+checking for tap-windows.h... no
+checking for setcon in -lselinux... no
+checking for pam_start in -lpam... yes
+checking for libnl-genl-3.0 >= 3.4.0... yes
+configure: Enabled ovpn-dco support for Linux
+checking for libcap-ng... yes
+checking for sys/prctl.h... yes
+checking for openssl >= 1.1.0... yes
+checking for SSL_CTX_new... yes
+checking for EVP_aes_256_gcm... yes
+checking for lzo2... yes
+checking for lzo/lzo1x.h... yes
+checking for liblz4 >= 1.7.1 liblz4 < 100... yes
+checking for LZ4_compress_default in -llz4... yes
+checking for LZ4_decompress_safe in -llz4... yes
+checking git checkout... yes
+checking whether the compiler accepts -Wno-stringop-truncation... yes
+checking whether the compiler accepts -Wstrict-prototypes... yes
+checking whether the compiler accepts -Wold-style-definition... yes
+checking whether the compiler accepts -Wconversion -Wno-sign-conversion... yes
+checking whether the compiler accepts -Wall... yes
+checking whether the compiler accepts -Wextra -Wno-sign-compare -Wno-unused-parameter... yes
+checking whether the compiler accepts -Wimplicit-fallthrough=2... yes
+checking for cmocka... no
+checking that generated files are newer than configure... done
+configure: creating ./config.status
+config.status: creating Makefile
+config.status: creating distro/Makefile
+config.status: creating distro/systemd/Makefile
+config.status: creating distro/dns-scripts/Makefile
+config.status: creating doc/Makefile
+config.status: creating doc/doxygen/Makefile
+config.status: creating doc/doxygen/openvpn.doxyfile
+config.status: creating include/Makefile
+config.status: creating sample/sample-plugins/Makefile
+config.status: creating src/Makefile
+config.status: creating src/compat/Makefile
+config.status: creating src/openvpn/Makefile
+config.status: creating src/openvpnmsica/Makefile
+config.status: creating src/openvpnserv/Makefile
+config.status: creating src/plugins/Makefile
+config.status: creating src/plugins/auth-pam/Makefile
+config.status: creating src/plugins/down-root/Makefile
+config.status: creating src/tapctl/Makefile
+config.status: creating tests/Makefile
+config.status: creating tests/unit_tests/Makefile
+config.status: creating tests/unit_tests/example_test/Makefile
+config.status: creating tests/unit_tests/openvpn/Makefile
+config.status: creating tests/unit_tests/openvpnserv/Makefile
+config.status: creating tests/unit_tests/plugins/Makefile
+config.status: creating tests/unit_tests/plugins/auth-pam/Makefile
+config.status: creating sample/Makefile
+config.status: creating tests/t_client.sh
+config.status: creating config.h
+config.status: creating include/openvpn-plugin.h
+config.status: include/openvpn-plugin.h is unchanged
+config.status: executing depfiles commands
+config.status: executing libtool commands
+
+2026-04-18 15:20:23,463 [INFO] Compiling...
+2026-04-18 15:20:39,034 [DEBUG] replacing config-version.h
+make  all-recursive
+make[1]: Entering directory '/home/admin1/BRACE/BRACE/openvpn-2.7.1'
+Making all in distro
+make[2]: Entering directory '/home/admin1/BRACE/BRACE/openvpn-2.7.1/distro'
+Making all in systemd
+make[3]: Entering directory '/home/admin1/BRACE/BRACE/openvpn-2.7.1/distro/systemd'
+make[3]: Nothing to be done for 'all'.
+make[3]: Leaving directory '/home/admin1/BRACE/BRACE/openvpn-2.7.1/distro/systemd'
+Making all in dns-scripts
+make[3]: Entering directory '/home/admin1/BRACE/BRACE/openvpn-2.7.1/distro/dns-scripts'
+cp ./systemd-dns-updown.sh dns-updown
+chmod +x dns-updown
+make[3]: Leaving directory '/home/admin1/BRACE/BRACE/openvpn-2.7.1/distro/dns-scripts'
+make[3]: Entering directory '/home/admin1/BRACE/BRACE/openvpn-2.7.1/distro'
+make[3]: Nothing to be done for 'all-am'.
+make[3]: Leaving directory '/home/admin1/BRACE/BRACE/openvpn-2.7.1/distro'
+make[2]: Leaving directory '/home/admin1/BRACE/BRACE/openvpn-2.7.1/distro'
+Making all in include
+make[2]: Entering directory '/home/admin1/BRACE/BRACE/openvpn-2.7.1/include'
+make  all-am
+make[3]: Entering directory '/home/admin1/BRACE/BRACE/openvpn-2.7.1/include'
+make[3]: Leaving directory '/home/admin1/BRACE/BRACE/openvpn-2.7.1/include'
+make[2]: Leaving directory '/home/admin1/BRACE/BRACE/openvpn-2.7.1/include'
+Making all in src
+make[2]: Entering directory '/home/admin1/BRACE/BRACE/openvpn-2.7.1/src'
+Making all in compat
+make[3]: Entering directory '/home/admin1/BRACE/BRACE/openvpn-2.7.1/src/compat'
+  CC       compat-basename.lo
+  CC       compat-dirname.lo
+  CC       compat-gettimeofday.lo
+  CC       compat-daemon.lo
+  CC       compat-strsep.lo
+  CCLD     libcompat.la
+make[3]: Leaving directory '/home/admin1/BRACE/BRACE/openvpn-2.7.1/src/compat'
+Making all in openvpn
+make[3]: Entering directory '/home/admin1/BRACE/BRACE/openvpn-2.7.1/src/openvpn'
+  CC       argv.o
+  CC       auth_token.o
+  CC       base64.o
+  CC       buffer.o
+  CC       clinat.o
+  CC       comp.o
+  CC       compstub.o
+  CC       comp-lz4.o
+  CC       crypto.o
+  CC       crypto_openssl.o
+  CC       crypto_mbedtls_legacy.o
+  CC       crypto_mbedtls.o
+  CC       crypto_epoch.o
+  CC       dco.o
+  CC       dco_freebsd.o
+  CC       dco_linux.o
+  CC       dco_win.o
+  CC       dhcp.o
+  CC       dns.o
+  CC       env_set.o
+  CC       error.o
+  CC       event.o
+  CC       fdmisc.o
+  CC       forward.o
+  CC       fragment.o
+  CC       gremlin.o
+  CC       helper.o
+  CC       httpdigest.o
+  CC       lladdr.o
+  CC       init.o
+  CC       interval.o
+  CC       list.o
+  CC       lzo.o
+  CC       manage.o
+  CC       mbuf.o
+  CC       misc.o
+  CC       platform.o
+  CC       console.o
+  CC       console_builtin.o
+  CC       console_systemd.o
+  CC       mroute.o
+  CC       mss.o
+  CC       mtcp.o
+  CC       mtu.o
+  CC       mudp.o
+  CC       multi.o
+  CC       multi_io.o
+  CC       networking_freebsd.o
+  CC       networking_iproute2.o
+  CC       networking_sitnl.o
+  CC       ntlm.o
+  CC       occ.o
+  CC       pkcs11.o
+  CC       pkcs11_openssl.o
+  CC       pkcs11_mbedtls.o
+  CC       openvpn.o
+  CC       options.o
+  CC       options_util.o
+  CC       options_parse.o
+  CC       otime.o
+  CC       packet_id.o
+  CC       ping.o
+  CC       plugin.o
+  CC       pool.o
+  CC       proto.o
+  CC       proxy.o
+  CC       ps.o
+  CC       push.o
+  CC       push_util.o
+  CC       reflect_filter.o
+  CC       reliable.o
+  CC       route.o
+  CC       run_command.o
+  CC       schedule.o
+  CC       session_id.o
+  CC       shaper.o
+  CC       sig.o
+  CC       socket.o
+  CC       socket_util.o
+  CC       socks.o
+  CC       ssl.o
+  CC       ssl_openssl.o
+  CC       ssl_mbedtls.o
+  CC       ssl_ncp.o
+  CC       ssl_pkt.o
+  CC       ssl_util.o
+  CC       ssl_verify.o
+  CC       ssl_verify_openssl.o
+  CC       ssl_verify_mbedtls.o
+  CC       status.o
+  CC       tls_crypt.o
+  CC       tun.o
+  CC       tun_afunix.o
+  CC       vlan.o
+  CC       xkey_provider.o
+  CC       xkey_helper.o
+  CC       win32.o
+  CC       win32-util.o
+  CC       cryptoapi.o
+  CCLD     openvpn
+make[3]: Leaving directory '/home/admin1/BRACE/BRACE/openvpn-2.7.1/src/openvpn'
+Making all in openvpnmsica
+make[3]: Entering directory '/home/admin1/BRACE/BRACE/openvpn-2.7.1/src/openvpnmsica'
+make[3]: Nothing to be done for 'all'.
+make[3]: Leaving directory '/home/admin1/BRACE/BRACE/openvpn-2.7.1/src/openvpnmsica'
+Making all in openvpnserv
+make[3]: Entering directory '/home/admin1/BRACE/BRACE/openvpn-2.7.1/src/openvpnserv'
+make  all-am
+make[4]: Entering directory '/home/admin1/BRACE/BRACE/openvpn-2.7.1/src/openvpnserv'
+make[4]: Nothing to be done for 'all-am'.
+make[4]: Leaving directory '/home/admin1/BRACE/BRACE/openvpn-2.7.1/src/openvpnserv'
+make[3]: Leaving directory '/home/admin1/BRACE/BRACE/openvpn-2.7.1/src/openvpnserv'
+Making all in plugins
+make[3]: Entering directory '/home/admin1/BRACE/BRACE/openvpn-2.7.1/src/plugins'
+Making all in auth-pam
+make[4]: Entering directory '/home/admin1/BRACE/BRACE/openvpn-2.7.1/src/plugins/auth-pam'
+  CC       utils.lo
+  CC       auth-pam.lo
+  CC       pamdl.lo
+  CCLD     openvpn-plugin-auth-pam.la
+make[4]: Leaving directory '/home/admin1/BRACE/BRACE/openvpn-2.7.1/src/plugins/auth-pam'
+Making all in down-root
+make[4]: Entering directory '/home/admin1/BRACE/BRACE/openvpn-2.7.1/src/plugins/down-root'
+  CC       down-root.lo
+  CCLD     openvpn-plugin-down-root.la
+make[4]: Leaving directory '/home/admin1/BRACE/BRACE/openvpn-2.7.1/src/plugins/down-root'
+make[4]: Entering directory '/home/admin1/BRACE/BRACE/openvpn-2.7.1/src/plugins'
+make[4]: Nothing to be done for 'all-am'.
+make[4]: Leaving directory '/home/admin1/BRACE/BRACE/openvpn-2.7.1/src/plugins'
+make[3]: Leaving directory '/home/admin1/BRACE/BRACE/openvpn-2.7.1/src/plugins'
+Making all in tapctl
+make[3]: Entering directory '/home/admin1/BRACE/BRACE/openvpn-2.7.1/src/tapctl'
+make[3]: Nothing to be done for 'all'.
+make[3]: Leaving directory '/home/admin1/BRACE/BRACE/openvpn-2.7.1/src/tapctl'
+make[3]: Entering directory '/home/admin1/BRACE/BRACE/openvpn-2.7.1/src'
+make[3]: Nothing to be done for 'all-am'.
+make[3]: Leaving directory '/home/admin1/BRACE/BRACE/openvpn-2.7.1/src'
+make[2]: Leaving directory '/home/admin1/BRACE/BRACE/openvpn-2.7.1/src'
+Making all in sample
+make[2]: Entering directory '/home/admin1/BRACE/BRACE/openvpn-2.7.1/sample'
+make[2]: Nothing to be done for 'all'.
+make[2]: Leaving directory '/home/admin1/BRACE/BRACE/openvpn-2.7.1/sample'
+Making all in doc
+make[2]: Entering directory '/home/admin1/BRACE/BRACE/openvpn-2.7.1/doc'
+Making all in doxygen
+make[3]: Entering directory '/home/admin1/BRACE/BRACE/openvpn-2.7.1/doc/doxygen'
+make[3]: Nothing to be done for 'all'.
+make[3]: Leaving directory '/home/admin1/BRACE/BRACE/openvpn-2.7.1/doc/doxygen'
+make[3]: Entering directory '/home/admin1/BRACE/BRACE/openvpn-2.7.1/doc'
+make[3]: Nothing to be done for 'all-am'.
+make[3]: Leaving directory '/home/admin1/BRACE/BRACE/openvpn-2.7.1/doc'
+make[2]: Leaving directory '/home/admin1/BRACE/BRACE/openvpn-2.7.1/doc'
+Making all in tests
+make[2]: Entering directory '/home/admin1/BRACE/BRACE/openvpn-2.7.1/tests'
+Making all in unit_tests
+make[3]: Entering directory '/home/admin1/BRACE/BRACE/openvpn-2.7.1/tests/unit_tests'
+make[4]: Entering directory '/home/admin1/BRACE/BRACE/openvpn-2.7.1/tests/unit_tests'
+make[4]: Nothing to be done for 'all-am'.
+make[4]: Leaving directory '/home/admin1/BRACE/BRACE/openvpn-2.7.1/tests/unit_tests'
+make[3]: Leaving directory '/home/admin1/BRACE/BRACE/openvpn-2.7.1/tests/unit_tests'
+make[3]: Entering directory '/home/admin1/BRACE/BRACE/openvpn-2.7.1/tests'
+make[3]: Nothing to be done for 'all-am'.
+make[3]: Leaving directory '/home/admin1/BRACE/BRACE/openvpn-2.7.1/tests'
+make[2]: Leaving directory '/home/admin1/BRACE/BRACE/openvpn-2.7.1/tests'
+make[2]: Entering directory '/home/admin1/BRACE/BRACE/openvpn-2.7.1'
+make[2]: Leaving directory '/home/admin1/BRACE/BRACE/openvpn-2.7.1'
+make[1]: Leaving directory '/home/admin1/BRACE/BRACE/openvpn-2.7.1'
+
+2026-04-18 15:20:39,034 [INFO] Installing...
+2026-04-18 15:20:40,213 [DEBUG] make  install-recursive
+make[1]: Entering directory '/home/admin1/BRACE/BRACE/openvpn-2.7.1'
+Making install in distro
+make[2]: Entering directory '/home/admin1/BRACE/BRACE/openvpn-2.7.1/distro'
+Making install in systemd
+make[3]: Entering directory '/home/admin1/BRACE/BRACE/openvpn-2.7.1/distro/systemd'
+make[4]: Entering directory '/home/admin1/BRACE/BRACE/openvpn-2.7.1/distro/systemd'
+make[4]: Nothing to be done for 'install-exec-am'.
+make  install-data-hook
+make[5]: Entering directory '/home/admin1/BRACE/BRACE/openvpn-2.7.1/distro/systemd'
+make[5]: Nothing to be done for 'install-data-hook'.
+make[5]: Leaving directory '/home/admin1/BRACE/BRACE/openvpn-2.7.1/distro/systemd'
+make[4]: Leaving directory '/home/admin1/BRACE/BRACE/openvpn-2.7.1/distro/systemd'
+make[3]: Leaving directory '/home/admin1/BRACE/BRACE/openvpn-2.7.1/distro/systemd'
+Making install in dns-scripts
+make[3]: Entering directory '/home/admin1/BRACE/BRACE/openvpn-2.7.1/distro/dns-scripts'
+make[4]: Entering directory '/home/admin1/BRACE/BRACE/openvpn-2.7.1/distro/dns-scripts'
+make[4]: Nothing to be done for 'install-exec-am'.
+ /usr/bin/mkdir -p '/usr/local/libexec/openvpn'
+ /usr/bin/install -c dns-updown '/usr/local/libexec/openvpn'
+make[4]: Leaving directory '/home/admin1/BRACE/BRACE/openvpn-2.7.1/distro/dns-scripts'
+make[3]: Leaving directory '/home/admin1/BRACE/BRACE/openvpn-2.7.1/distro/dns-scripts'
+make[3]: Entering directory '/home/admin1/BRACE/BRACE/openvpn-2.7.1/distro'
+make[4]: Entering directory '/home/admin1/BRACE/BRACE/openvpn-2.7.1/distro'
+make[4]: Nothing to be done for 'install-exec-am'.
+make[4]: Nothing to be done for 'install-data-am'.
+make[4]: Leaving directory '/home/admin1/BRACE/BRACE/openvpn-2.7.1/distro'
+make[3]: Leaving directory '/home/admin1/BRACE/BRACE/openvpn-2.7.1/distro'
+make[2]: Leaving directory '/home/admin1/BRACE/BRACE/openvpn-2.7.1/distro'
+Making install in include
+make[2]: Entering directory '/home/admin1/BRACE/BRACE/openvpn-2.7.1/include'
+make[3]: Entering directory '/home/admin1/BRACE/BRACE/openvpn-2.7.1/include'
+make[3]: Nothing to be done for 'install-exec-am'.
+ /usr/bin/mkdir -p '/usr/local/include'
+ /usr/bin/install -c -m 644 openvpn-plugin.h openvpn-msg.h '/usr/local/include'
+make[3]: Leaving directory '/home/admin1/BRACE/BRACE/openvpn-2.7.1/include'
+make[2]: Leaving directory '/home/admin1/BRACE/BRACE/openvpn-2.7.1/include'
+Making install in src
+make[2]: Entering directory '/home/admin1/BRACE/BRACE/openvpn-2.7.1/src'
+Making install in compat
+make[3]: Entering directory '/home/admin1/BRACE/BRACE/openvpn-2.7.1/src/compat'
+make[4]: Entering directory '/home/admin1/BRACE/BRACE/openvpn-2.7.1/src/compat'
+make[4]: Nothing to be done for 'install-exec-am'.
+make[4]: Nothing to be done for 'install-data-am'.
+make[4]: Leaving directory '/home/admin1/BRACE/BRACE/openvpn-2.7.1/src/compat'
+make[3]: Leaving directory '/home/admin1/BRACE/BRACE/openvpn-2.7.1/src/compat'
+Making install in openvpn
+make[3]: Entering directory '/home/admin1/BRACE/BRACE/openvpn-2.7.1/src/openvpn'
+make[4]: Entering directory '/home/admin1/BRACE/BRACE/openvpn-2.7.1/src/openvpn'
+ /usr/bin/mkdir -p '/usr/local/sbin'
+  /bin/bash ../../libtool   --mode=install /usr/bin/install -c openvpn '/usr/local/sbin'
+libtool: install: /usr/bin/install -c openvpn /usr/local/sbin/openvpn
+make[4]: Nothing to be done for 'install-data-am'.
+make[4]: Leaving directory '/home/admin1/BRACE/BRACE/openvpn-2.7.1/src/openvpn'
+make[3]: Leaving directory '/home/admin1/BRACE/BRACE/openvpn-2.7.1/src/openvpn'
+Making install in openvpnmsica
+make[3]: Entering directory '/home/admin1/BRACE/BRACE/openvpn-2.7.1/src/openvpnmsica'
+make[4]: Entering directory '/home/admin1/BRACE/BRACE/openvpn-2.7.1/src/openvpnmsica'
+make[4]: Nothing to be done for 'install-data-am'.
+make[4]: Leaving directory '/home/admin1/BRACE/BRACE/openvpn-2.7.1/src/openvpnmsica'
+make[3]: Leaving directory '/home/admin1/BRACE/BRACE/openvpn-2.7.1/src/openvpnmsica'
+Making install in openvpnserv
+make[3]: Entering directory '/home/admin1/BRACE/BRACE/openvpn-2.7.1/src/openvpnserv'
+make  install-am
+make[4]: Entering directory '/home/admin1/BRACE/BRACE/openvpn-2.7.1/src/openvpnserv'
+make[5]: Entering directory '/home/admin1/BRACE/BRACE/openvpn-2.7.1/src/openvpnserv'
+make[5]: Nothing to be done for 'install-data-am'.
+make[5]: Leaving directory '/home/admin1/BRACE/BRACE/openvpn-2.7.1/src/openvpnserv'
+make[4]: Leaving directory '/home/admin1/BRACE/BRACE/openvpn-2.7.1/src/openvpnserv'
+make[3]: Leaving directory '/home/admin1/BRACE/BRACE/openvpn-2.7.1/src/openvpnserv'
+Making install in plugins
+make[3]: Entering directory '/home/admin1/BRACE/BRACE/openvpn-2.7.1/src/plugins'
+Making install in auth-pam
+make[4]: Entering directory '/home/admin1/BRACE/BRACE/openvpn-2.7.1/src/plugins/auth-pam'
+make[5]: Entering directory '/home/admin1/BRACE/BRACE/openvpn-2.7.1/src/plugins/auth-pam'
+make[5]: Nothing to be done for 'install-exec-am'.
+ /usr/bin/mkdir -p '/usr/local/share/doc/openvpn'
+ /usr/bin/install -c -m 644 README.auth-pam '/usr/local/share/doc/openvpn'
+ /usr/bin/mkdir -p '/usr/local/lib/openvpn/plugins'
+ /bin/bash ../../../libtool   --mode=install /usr/bin/install -c   openvpn-plugin-auth-pam.la '/usr/local/lib/openvpn/plugins'
+libtool: install: /usr/bin/install -c .libs/openvpn-plugin-auth-pam.so /usr/local/lib/openvpn/plugins/openvpn-plugin-auth-pam.so
+libtool: install: /usr/bin/install -c .libs/openvpn-plugin-auth-pam.lai /usr/local/lib/openvpn/plugins/openvpn-plugin-auth-pam.la
+libtool: finish: PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/snap/bin:/sbin" ldconfig -n /usr/local/lib/openvpn/plugins
+----------------------------------------------------------------------
+Libraries have been installed in:
+   /usr/local/lib/openvpn/plugins
+
+If you ever happen to want to link against installed libraries
+in a given directory, LIBDIR, you must either use libtool, and
+specify the full pathname of the library, or use the '-LLIBDIR'
+flag during linking and do at least one of the following:
+   - add LIBDIR to the 'LD_LIBRARY_PATH' environment variable
+     during execution
+   - add LIBDIR to the 'LD_RUN_PATH' environment variable
+     during linking
+   - use the '-Wl,-rpath -Wl,LIBDIR' linker flag
+   - have your system administrator add LIBDIR to '/etc/ld.so.conf'
+
+See any operating system documentation about shared libraries for
+more information, such as the ld(1) and ld.so(8) manual pages.
+----------------------------------------------------------------------
+make[5]: Leaving directory '/home/admin1/BRACE/BRACE/openvpn-2.7.1/src/plugins/auth-pam'
+make[4]: Leaving directory '/home/admin1/BRACE/BRACE/openvpn-2.7.1/src/plugins/auth-pam'
+Making install in down-root
+make[4]: Entering directory '/home/admin1/BRACE/BRACE/openvpn-2.7.1/src/plugins/down-root'
+make[5]: Entering directory '/home/admin1/BRACE/BRACE/openvpn-2.7.1/src/plugins/down-root'
+make[5]: Nothing to be done for 'install-exec-am'.
+ /usr/bin/mkdir -p '/usr/local/share/doc/openvpn'
+ /usr/bin/install -c -m 644 README.down-root '/usr/local/share/doc/openvpn'
+ /usr/bin/mkdir -p '/usr/local/lib/openvpn/plugins'
+ /bin/bash ../../../libtool   --mode=install /usr/bin/install -c   openvpn-plugin-down-root.la '/usr/local/lib/openvpn/plugins'
+libtool: install: /usr/bin/install -c .libs/openvpn-plugin-down-root.so /usr/local/lib/openvpn/plugins/openvpn-plugin-down-root.so
+libtool: install: /usr/bin/install -c .libs/openvpn-plugin-down-root.lai /usr/local/lib/openvpn/plugins/openvpn-plugin-down-root.la
+libtool: finish: PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/snap/bin:/sbin" ldconfig -n /usr/local/lib/openvpn/plugins
+----------------------------------------------------------------------
+Libraries have been installed in:
+   /usr/local/lib/openvpn/plugins
+
+If you ever happen to want to link against installed libraries
+in a given directory, LIBDIR, you must either use libtool, and
+specify the full pathname of the library, or use the '-LLIBDIR'
+flag during linking and do at least one of the following:
+   - add LIBDIR to the 'LD_LIBRARY_PATH' environment variable
+     during execution
+   - add LIBDIR to the 'LD_RUN_PATH' environment variable
+     during linking
+   - use the '-Wl,-rpath -Wl,LIBDIR' linker flag
+   - have your system administrator add LIBDIR to '/etc/ld.so.conf'
+
+See any operating system documentation about shared libraries for
+more information, such as the ld(1) and ld.so(8) manual pages.
+----------------------------------------------------------------------
+make[5]: Leaving directory '/home/admin1/BRACE/BRACE/openvpn-2.7.1/src/plugins/down-root'
+make[4]: Leaving directory '/home/admin1/BRACE/BRACE/openvpn-2.7.1/src/plugins/down-root'
+make[4]: Entering directory '/home/admin1/BRACE/BRACE/openvpn-2.7.1/src/plugins'
+make[5]: Entering directory '/home/admin1/BRACE/BRACE/openvpn-2.7.1/src/plugins'
+make[5]: Nothing to be done for 'install-exec-am'.
+make[5]: Nothing to be done for 'install-data-am'.
+make[5]: Leaving directory '/home/admin1/BRACE/BRACE/openvpn-2.7.1/src/plugins'
+make[4]: Leaving directory '/home/admin1/BRACE/BRACE/openvpn-2.7.1/src/plugins'
+make[3]: Leaving directory '/home/admin1/BRACE/BRACE/openvpn-2.7.1/src/plugins'
+Making install in tapctl
+make[3]: Entering directory '/home/admin1/BRACE/BRACE/openvpn-2.7.1/src/tapctl'
+make[4]: Entering directory '/home/admin1/BRACE/BRACE/openvpn-2.7.1/src/tapctl'
+make[4]: Nothing to be done for 'install-data-am'.
+make[4]: Leaving directory '/home/admin1/BRACE/BRACE/openvpn-2.7.1/src/tapctl'
+make[3]: Leaving directory '/home/admin1/BRACE/BRACE/openvpn-2.7.1/src/tapctl'
+make[3]: Entering directory '/home/admin1/BRACE/BRACE/openvpn-2.7.1/src'
+make[4]: Entering directory '/home/admin1/BRACE/BRACE/openvpn-2.7.1/src'
+make[4]: Nothing to be done for 'install-exec-am'.
+make[4]: Nothing to be done for 'install-data-am'.
+make[4]: Leaving directory '/home/admin1/BRACE/BRACE/openvpn-2.7.1/src'
+make[3]: Leaving directory '/home/admin1/BRACE/BRACE/openvpn-2.7.1/src'
+make[2]: Leaving directory '/home/admin1/BRACE/BRACE/openvpn-2.7.1/src'
+Making install in sample
+make[2]: Entering directory '/home/admin1/BRACE/BRACE/openvpn-2.7.1/sample'
+make[3]: Entering directory '/home/admin1/BRACE/BRACE/openvpn-2.7.1/sample'
+make[3]: Nothing to be done for 'install-exec-am'.
+make[3]: Nothing to be done for 'install-data-am'.
+make[3]: Leaving directory '/home/admin1/BRACE/BRACE/openvpn-2.7.1/sample'
+make[2]: Leaving directory '/home/admin1/BRACE/BRACE/openvpn-2.7.1/sample'
+Making install in doc
+make[2]: Entering directory '/home/admin1/BRACE/BRACE/openvpn-2.7.1/doc'
+Making install in doxygen
+make[3]: Entering directory '/home/admin1/BRACE/BRACE/openvpn-2.7.1/doc/doxygen'
+make[4]: Entering directory '/home/admin1/BRACE/BRACE/openvpn-2.7.1/doc/doxygen'
+make[4]: Nothing to be done for 'install-exec-am'.
+make[4]: Nothing to be done for 'install-data-am'.
+make[4]: Leaving directory '/home/admin1/BRACE/BRACE/openvpn-2.7.1/doc/doxygen'
+make[3]: Leaving directory '/home/admin1/BRACE/BRACE/openvpn-2.7.1/doc/doxygen'
+make[3]: Entering directory '/home/admin1/BRACE/BRACE/openvpn-2.7.1/doc'
+make[4]: Entering directory '/home/admin1/BRACE/BRACE/openvpn-2.7.1/doc'
+make[4]: Nothing to be done for 'install-exec-am'.
+ /usr/bin/mkdir -p '/usr/local/share/doc/openvpn'
+ /usr/bin/install -c -m 644 management-notes.txt gui-notes.txt '/usr/local/share/doc/openvpn'
+ /usr/bin/mkdir -p '/usr/local/share/man/man5'
+ /usr/bin/install -c -m 644 openvpn-examples.5 '/usr/local/share/man/man5'
+ /usr/bin/mkdir -p '/usr/local/share/man/man8'
+ /usr/bin/install -c -m 644 openvpn.8 '/usr/local/share/man/man8'
+make[4]: Leaving directory '/home/admin1/BRACE/BRACE/openvpn-2.7.1/doc'
+make[3]: Leaving directory '/home/admin1/BRACE/BRACE/openvpn-2.7.1/doc'
+make[2]: Leaving directory '/home/admin1/BRACE/BRACE/openvpn-2.7.1/doc'
+Making install in tests
+make[2]: Entering directory '/home/admin1/BRACE/BRACE/openvpn-2.7.1/tests'
+Making install in unit_tests
+make[3]: Entering directory '/home/admin1/BRACE/BRACE/openvpn-2.7.1/tests/unit_tests'
+make[4]: Entering directory '/home/admin1/BRACE/BRACE/openvpn-2.7.1/tests/unit_tests'
+make[5]: Entering directory '/home/admin1/BRACE/BRACE/openvpn-2.7.1/tests/unit_tests'
+make[5]: Nothing to be done for 'install-exec-am'.
+make[5]: Nothing to be done for 'install-data-am'.
+make[5]: Leaving directory '/home/admin1/BRACE/BRACE/openvpn-2.7.1/tests/unit_tests'
+make[4]: Leaving directory '/home/admin1/BRACE/BRACE/openvpn-2.7.1/tests/unit_tests'
+make[3]: Leaving directory '/home/admin1/BRACE/BRACE/openvpn-2.7.1/tests/unit_tests'
+make[3]: Entering directory '/home/admin1/BRACE/BRACE/openvpn-2.7.1/tests'
+make[4]: Entering directory '/home/admin1/BRACE/BRACE/openvpn-2.7.1/tests'
+make[4]: Nothing to be done for 'install-exec-am'.
+make[4]: Nothing to be done for 'install-data-am'.
+make[4]: Leaving directory '/home/admin1/BRACE/BRACE/openvpn-2.7.1/tests'
+make[3]: Leaving directory '/home/admin1/BRACE/BRACE/openvpn-2.7.1/tests'
+make[2]: Leaving directory '/home/admin1/BRACE/BRACE/openvpn-2.7.1/tests'
+make[2]: Entering directory '/home/admin1/BRACE/BRACE/openvpn-2.7.1'
+make[3]: Entering directory '/home/admin1/BRACE/BRACE/openvpn-2.7.1'
+make[3]: Nothing to be done for 'install-exec-am'.
+ /usr/bin/mkdir -p '/usr/local/share/doc/openvpn'
+ /usr/bin/install -c -m 644 README README.mbedtls Changes.rst COPYRIGHT.GPL COPYING '/usr/local/share/doc/openvpn'
+make[3]: Leaving directory '/home/admin1/BRACE/BRACE/openvpn-2.7.1'
+make[2]: Leaving directory '/home/admin1/BRACE/BRACE/openvpn-2.7.1'
+make[1]: Leaving directory '/home/admin1/BRACE/BRACE/openvpn-2.7.1'
+
+2026-04-18 15:20:40,213 [INFO] OpenVPN installed successfully!
+2026-04-18 15:20:40,213 [INFO] ==== Completed Successfully ====

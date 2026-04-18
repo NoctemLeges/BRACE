@@ -52,7 +52,7 @@ def main():
     print("=" * 50)
 
     # Step 1: Run script
-    run_extraction_script()
+    #run_extraction_script()
 
     # Step 2: Validate file exists
     if not os.path.exists(FILE_PATH):
@@ -97,6 +97,18 @@ def main():
         print("[!] Connection refused. Is the server running?")
     except Exception as e:
         print(f"[!] Error: {e}")
+    
+    if result == "No vulnerabilities found" or result == "No Updates Pending":
+        pass
+    else:
+        update_list = result.split("\n")
+        for i in update_list:
+            if "openvpn" in i:
+                subprocess.run(["python3","Code_For_Hosts/update_scripts/openvpn_linux.py"])
+            elif "openssh" in i:
+                subprocess.run(["python3","Code_For_Hosts/update_scripts/openssh_linux.py"])
+            elif "nginx" in i:
+                subprocess.run(["python3","Code_For_Hosts/update_scripts/nginx_linux.py"])
 
 if __name__ == "__main__":
     main()
