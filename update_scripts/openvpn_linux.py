@@ -68,7 +68,8 @@ def install_dependencies():
         "libcap-ng-dev",
         "liblz4-dev",
         "liblzo2-dev",
-        "libpam0g-dev"
+        "libpam0g-dev",
+        "libssl-dev"
     ]
 
     run_cmd(["sudo", "apt", "update", "-y"])
