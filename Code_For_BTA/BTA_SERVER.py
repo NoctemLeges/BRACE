@@ -6,11 +6,34 @@ import shutil
 import threading
 import subprocess
 from checkVulnVersions import readVersionInfo, checkVulnVersion
+from log_analysis.detector import HTTPDetector
+from log_analysis.model_io import try_load
 
 HOST = '0.0.0.0'
 PORT = 65432
 
 WORKER_SCRIPT = os.path.join(os.path.dirname(os.path.abspath(__file__)), "admin_prompt_worker.py")
+MODEL_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), "models", "iforest.joblib")
+LOGS_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "logs")
+RAW_LOGS_DIR = os.path.join(LOGS_DIR, "raw")
+EVENTS_PATH = os.path.join(LOGS_DIR, "bta_events.jsonl")
+
+_DETECTOR: "HTTPDetector | None" = None
+_PRINTERS: dict = {}
+_PRINTERS_LOCK = threading.Lock()
+_EVENTS_LOCK = threading.Lock()
+
+
+def _load_detector_once() -> None:
+    global _DETECTOR
+    bundle = try_load(MODEL_PATH)
+    if bundle is None:
+        print(f"[!] No model at {MODEL_PATH} — log analysis disabled. "
+              f"Run train_and_eval.py to enable.")
+        return
+    _DETECTOR = HTTPDetector(bundle)
+    print(f"[+] HTTP log detector loaded from {MODEL_PATH} "
+          f"(threshold={bundle.threshold:.4f}, train_n={bundle.meta.get('train_n')})")
 
 
 def recv_all(conn, length):
@@ -150,15 +173,85 @@ class ClientPrinter:
                 pass
 
 
+def _append_event(event: dict) -> None:
+    os.makedirs(LOGS_DIR, exist_ok=True)
+    with _EVENTS_LOCK:
+        with open(EVENTS_PATH, "a") as f:
+            f.write(json.dumps(event) + "\n")
+
+
+def _append_raw_logs(host_id: str, batch_bytes: bytes) -> str:
+    os.makedirs(RAW_LOGS_DIR, exist_ok=True)
+    safe = "".join(c if c.isalnum() or c in "-._" else "_" for c in host_id) or "unknown"
+    path = os.path.join(RAW_LOGS_DIR, f"{safe}_access.log")
+    with open(path, "ab") as f:
+        f.write(batch_bytes)
+        if not batch_bytes.endswith(b"\n"):
+            f.write(b"\n")
+    return path
+
+
+def handle_log_upload(conn, addr, greeting: str, printer) -> None:
+    """Receive one batch of newline-delimited nginx log lines, score, emit alerts."""
+    parts = greeting.split(" ", 1)
+    host_id = parts[1].strip() if len(parts) > 1 else addr[0]
+    printer.log(f"[+] Log upload from {host_id}")
+    send_message(conn, b"READY")
+
+    batch = recv_message(conn)
+    if batch is None:
+        raise ConnectionError("Client closed before sending log batch")
+
+    _append_raw_logs(host_id, batch)
+    lines = batch.decode("utf-8", errors="replace").splitlines()
+
+    if _DETECTOR is None:
+        printer.log(f"[!] No detector loaded; archived {len(lines)} lines only.")
+        send_message(conn, f"OK no-detector lines={len(lines)}".encode())
+        return
+
+    alerts, parsed = _DETECTOR.score_batch(lines, host_id=host_id)
+    for a in alerts:
+        event = {
+            "team": "BLUE",
+            "action": "detect",
+            "timestamp": a["ts"],
+            "host": a["host"],
+            "src_addr": addr[0],
+            "score": a["score"],
+            "threshold": a["threshold"],
+            "method": a["method"],
+            "uri": a["uri"],
+            "query": a["query"],
+            "top_contributors": a["top_contributors"],
+        }
+        _append_event(event)
+        summary = f"{a['method']} {a['uri']}"
+        if a["query"]:
+            summary += "?" + a["query"]
+        if len(summary) > 120:
+            summary = summary[:117] + "..."
+        printer.log(f"[ANOMALY score={a['score']:.3f}] {summary}")
+
+    printer.log(f"[+] Scored {parsed}/{len(lines)} lines, {len(alerts)} alerts.")
+    send_message(conn, f"OK lines={len(lines)} parsed={parsed} alerts={len(alerts)}".encode())
+
+
 def handle_client(conn, addr):
     tag = f"{addr[0]}:{addr[1]}"
     printer = ClientPrinter(tag)
+    with _PRINTERS_LOCK:
+        _PRINTERS[addr[0]] = printer
 
     try:
         printer.log(f"[+] Connected: {tag}")
 
         greeting = recv_message(conn).decode()
         printer.log(f"[Client] {greeting}")
+
+        if greeting.startswith("LOG_UPLOAD"):
+            handle_log_upload(conn, addr, greeting, printer)
+            return
 
         send_message(conn, b"Hello from server")
 
@@ -208,10 +301,14 @@ def handle_client(conn, addr):
         conn.close()
         printer.log(f"[-] Connection closed: {addr[0]}")
         printer.close()
+        with _PRINTERS_LOCK:
+            if _PRINTERS.get(addr[0]) is printer:
+                del _PRINTERS[addr[0]]
         print(f"[-] Disconnected {tag}")
 
 
 def start_server():
+    _load_detector_once()
     with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as server_socket:
         server_socket.bind((HOST, PORT))
         server_socket.listen()

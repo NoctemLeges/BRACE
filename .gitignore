@@ -35,9 +35,23 @@ Notes.md
 
 #BTA Stuff
 Code_For_BTA/VersionInfo_*
+Code_For_BTA/models/*.npy
+!Code_For_BTA/models/iforest.joblib
+!Code_For_BTA/models/iforest.meta.json
+!Code_For_BTA/models/eval_report.json
+Code_For_BTA/logs/*.jsonl
+Code_For_BTA/logs/raw/
+
+# CSIC 2010 dataset (downloaded locally)
+csic2010/
 
 #Host Stuff
 Code_For_Hosts/update_scripts/logs/
 
 arena/__pycache__/
 arena_openrouter/__pycache__/
+
+Rubrics for project.docx
+BRACE_PPT.pptx
+BRACE_Documentation_Part2.pdf
+BRACE_Documentation.pdf

@@ -1,0 +1,51 @@
+{
+  "threshold": -0.14801390199248468,
+  "feature_order": [
+    "uri_length",
+    "query_length",
+    "num_params",
+    "max_param_value_length",
+    "special_char_count",
+    "digit_ratio",
+    "non_ascii_count",
+    "url_depth",
+    "shannon_entropy",
+    "method_id"
+  ],
+  "baseline_mean": [
+    7.0,
+    13.859094619750977,
+    1.0,
+    11.859094619750977,
+    2.1296379566192627,
+    0.1789054572582245,
+    0.0,
+    1.0,
+    3.847045421600342,
+    0.0
+  ],
+  "baseline_std": [
+    0.0,
+    7.712043762207031,
+    0.0,
+    7.712043762207031,
+    0.33765116333961487,
+    0.23286445438861847,
+    0.0,
+    0.0,
+    0.23373611271381378,
+    0.0
+  ],
+  "train_n": 15443,
+  "n_estimators": 200,
+  "threshold_percentile": 1.0,
+  "trained_at": "2026-05-15T09:46:02.316620+00:00",
+  "dataset_sha256": "a4e62ba13435ad3dd583c5790db2175629020fc41c56e1b26baa02a9ae45f03d",
+  "dataset_counts": {
+    "benign_total": 19304,
+    "anomalous_total": 11763,
+    "benign_train": 15443,
+    "benign_test": 3861,
+    "anomalous_test": 11763
+  }
+}
