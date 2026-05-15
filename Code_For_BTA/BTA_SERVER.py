@@ -1,8 +1,17 @@
 import socket
+import sys
+import os
+import json
+import shutil
+import threading
+import subprocess
 from checkVulnVersions import readVersionInfo, checkVulnVersion
 
 HOST = '0.0.0.0'
 PORT = 65432
+
+WORKER_SCRIPT = os.path.join(os.path.dirname(os.path.abspath(__file__)), "admin_prompt_worker.py")
+
 
 def recv_all(conn, length):
     data = b''
@@ -24,56 +33,182 @@ def send_message(conn, data_bytes):
     conn.sendall(len(data_bytes).to_bytes(4, 'big'))
     conn.sendall(data_bytes)
 
+
+def _spawn_admin_terminal(port, tag):
+    cmd = [sys.executable, WORKER_SCRIPT, str(port), tag]
+
+    if sys.platform.startswith("win"):
+        creationflags = getattr(subprocess, "CREATE_NEW_CONSOLE", 0)
+        subprocess.Popen(cmd, creationflags=creationflags)
+        return True
+
+    inner = " ".join(_shell_quote(c) for c in cmd)
+    title = f"BTA Admin {tag}"
+
+    if shutil.which("gnome-terminal"):
+        subprocess.Popen(["gnome-terminal", "--title", title, "--", *cmd])
+        return True
+    if shutil.which("konsole"):
+        subprocess.Popen(["konsole", "--title", title, "-e", *cmd])
+        return True
+    if shutil.which("xfce4-terminal"):
+        subprocess.Popen(["xfce4-terminal", "--title", title, "-x", *cmd])
+        return True
+    if shutil.which("xterm"):
+        subprocess.Popen(["xterm", "-T", title, "-e", inner])
+        return True
+    return False
+
+
+def _shell_quote(s):
+    if not s or any(c in s for c in " \t\"'\\$`"):
+        return "'" + s.replace("'", "'\\''") + "'"
+    return s
+
+
+class ClientPrinter:
+    """Owns the IPC channel to one spawned admin terminal.
+
+    If no terminal could be spawned (headless environment), falls back to
+    printing on the server's own stdout and prompting on its stdin.
+    """
+
+    def __init__(self, tag):
+        self.tag = tag
+        self.ipc_conn = None
+        self.ipc_srv = None
+        self.fallback = False
+
+        srv = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        srv.bind(("127.0.0.1", 0))
+        srv.listen(1)
+        srv.settimeout(10.0)
+        port = srv.getsockname()[1]
+
+        if not _spawn_admin_terminal(port, tag):
+            srv.close()
+            print(f"[!] No terminal emulator found; falling back to inline prompt for {tag}")
+            self.fallback = True
+            return
+
+        try:
+            conn, _ = srv.accept()
+            conn.settimeout(None)
+            self.ipc_srv = srv
+            self.ipc_conn = conn
+        except socket.timeout:
+            srv.close()
+            print(f"[!] Admin terminal for {tag} did not connect; falling back to inline prompt")
+            self.fallback = True
+
+    def _send(self, obj):
+        if self.fallback or self.ipc_conn is None:
+            return False
+        try:
+            send_message(self.ipc_conn, json.dumps(obj).encode())
+            return True
+        except (OSError, ConnectionError):
+            return False
+
+    def log(self, msg):
+        if self.fallback or not self._send({"type": "log", "data": msg}):
+            print(f"[{self.tag}] {msg}")
+
+    def prompt(self, msg):
+        if self.fallback:
+            try:
+                return input(f"[{self.tag}] {msg}").strip()
+            except EOFError:
+                return ""
+
+        if not self._send({"type": "prompt", "data": msg}):
+            return ""
+
+        try:
+            raw = recv_message(self.ipc_conn)
+        except (OSError, ConnectionError):
+            return ""
+        if raw is None:
+            return ""
+        try:
+            frame = json.loads(raw.decode())
+        except json.JSONDecodeError:
+            return ""
+        return (frame.get("data") or "").strip()
+
+    def close(self):
+        self._send({"type": "done"})
+        if self.ipc_conn is not None:
+            try:
+                self.ipc_conn.close()
+            except OSError:
+                pass
+        if self.ipc_srv is not None:
+            try:
+                self.ipc_srv.close()
+            except OSError:
+                pass
+
+
 def handle_client(conn, addr):
-    print(f"\n[+] Connected: {addr[0]}:{addr[1]}")
+    tag = f"{addr[0]}:{addr[1]}"
+    printer = ClientPrinter(tag)
 
     try:
-        # Step 1: Receive greeting
+        printer.log(f"[+] Connected: {tag}")
+
         greeting = recv_message(conn).decode()
-        print(f"[Client] {greeting}")
+        printer.log(f"[Client] {greeting}")
 
         send_message(conn, b"Hello from server")
 
-        # Step 2: Receive file data
         file_data = recv_message(conn)
-        print(f"[+] Received file ({len(file_data)} bytes)")
+        if file_data is None:
+            raise ConnectionError("Client closed before sending file")
+        printer.log(f"[+] Received file ({len(file_data)} bytes)")
 
         filename = f"VersionInfo_{addr[0]}.txt"
         with open(filename, "wb") as f:
             f.write(file_data)
 
-        print(f"[+] Saved as {filename}")
+        printer.log(f"[+] Saved as {filename}")
 
         send_message(conn, b"File received successfully")
 
-        # Step 3: Process file
         vuln_count_dict = checkVulnVersion(readVersionInfo(filename))
 
         reply_list = [k for k, v in vuln_count_dict.items() if v > 0]
         reply = "\n".join(reply_list) if reply_list else "No vulnerabilities found"
 
-        #Temporary Stand-in code for Op. Admin
         if reply != "No vulnerabilities found":
-            Admin_Choice = input(f"Send Update Command to {addr[0]}?[Y/N]: ")
-            if Admin_Choice in "Yy":
+            printer.log("Vulnerable products:")
+            for product in reply_list:
+                printer.log(f"  - {product}")
+            answer = printer.prompt(f"Send Update Command to {addr[0]}?[Y/N]: ")
+            if answer and answer[0] in "Yy":
                 send_message(conn, reply.encode())
+                printer.log("[+] Sent update list to client.")
             else:
-                send_message(conn,"No Updates Pending".encode())
+                send_message(conn, "No Updates Pending".encode())
+                printer.log("[+] Sent 'No Updates Pending' to client.")
         else:
             send_message(conn, reply.encode())
+            printer.log("[+] No vulnerabilities found. Notified client.")
 
-        print(f"[+] Analysis complete. Sent results.")
+        printer.log("[+] Analysis complete.")
 
     except Exception as e:
-        print(f"[!] Error: {e}")
+        printer.log(f"[!] Error: {e}")
         try:
             send_message(conn, f"Error: {str(e)}".encode())
-        except:
+        except Exception:
             pass
 
     finally:
         conn.close()
-        print(f"[-] Connection closed: {addr[0]}")
+        printer.log(f"[-] Connection closed: {addr[0]}")
+        printer.close()
+        print(f"[-] Disconnected {tag}")
 
 
 def start_server():
@@ -88,7 +223,8 @@ def start_server():
 
         while True:
             conn, addr = server_socket.accept()
-            handle_client(conn, addr)   # single-client (can upgrade to threading)
+            print(f"[+] Connection from {addr[0]}:{addr[1]}")
+            threading.Thread(target=handle_client, args=(conn, addr), daemon=True).start()
 
 
 if __name__ == "__main__":
