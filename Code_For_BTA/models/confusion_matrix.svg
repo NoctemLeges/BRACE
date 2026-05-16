@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="680" viewBox="0 0 900 680" role="img" aria-labelledby="title desc">
+  <title id="title">Isolation Forest Confusion Matrix</title>
+  <desc id="desc">Confusion matrix for the HTTP payload Isolation Forest model. True negatives 3823, false positives 38, false negatives 958, true positives 10805.</desc>
+  <rect width="900" height="680" fill="#f8fafc"/>
+
+  <text x="450" y="58" text-anchor="middle" font-family="Arial, sans-serif" font-size="30" font-weight="700" fill="#0f172a">
+    Isolation Forest Confusion Matrix
+  </text>
+  <text x="450" y="92" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" fill="#475569">
+    Test set: 3,861 benign + 11,763 anomalous samples
+  </text>
+
+  <text x="488" y="142" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" font-weight="700" fill="#334155">
+    Predicted label
+  </text>
+  <text x="342" y="178" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" font-weight="700" fill="#334155">
+    Benign
+  </text>
+  <text x="634" y="178" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" font-weight="700" fill="#334155">
+    Anomalous
+  </text>
+
+  <g transform="translate(118 380) rotate(-90)">
+    <text text-anchor="middle" font-family="Arial, sans-serif" font-size="18" font-weight="700" fill="#334155">Actual label</text>
+  </g>
+  <text x="171" y="318" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" font-weight="700" fill="#334155">Benign</text>
+  <text x="171" y="492" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" font-weight="700" fill="#334155">Anomalous</text>
+
+  <g font-family="Arial, sans-serif">
+    <rect x="230" y="205" width="256" height="174" rx="10" fill="#4d9fe8" stroke="#ffffff" stroke-width="4"/>
+    <text x="358" y="264" text-anchor="middle" font-size="21" font-weight="700" fill="#ffffff">TN</text>
+    <text x="358" y="309" text-anchor="middle" font-size="38" font-weight="700" fill="#ffffff">3,823</text>
+    <text x="358" y="343" text-anchor="middle" font-size="15" fill="#e0f2fe">Actual benign predicted benign</text>
+
+    <rect x="486" y="205" width="256" height="174" rx="10" fill="#dbeafe" stroke="#ffffff" stroke-width="4"/>
+    <text x="614" y="264" text-anchor="middle" font-size="21" font-weight="700" fill="#1e3a8a">FP</text>
+    <text x="614" y="309" text-anchor="middle" font-size="38" font-weight="700" fill="#1e3a8a">38</text>
+    <text x="614" y="343" text-anchor="middle" font-size="15" fill="#1e40af">Benign flagged anomalous</text>
+
+    <rect x="230" y="379" width="256" height="174" rx="10" fill="#bfdbfe" stroke="#ffffff" stroke-width="4"/>
+    <text x="358" y="438" text-anchor="middle" font-size="21" font-weight="700" fill="#1e3a8a">FN</text>
+    <text x="358" y="483" text-anchor="middle" font-size="38" font-weight="700" fill="#1e3a8a">958</text>
+    <text x="358" y="517" text-anchor="middle" font-size="15" fill="#1e40af">Anomalies missed</text>
+
+    <rect x="486" y="379" width="256" height="174" rx="10" fill="#0f5ea8" stroke="#ffffff" stroke-width="4"/>
+    <text x="614" y="438" text-anchor="middle" font-size="21" font-weight="700" fill="#ffffff">TP</text>
+    <text x="614" y="483" text-anchor="middle" font-size="38" font-weight="700" fill="#ffffff">10,805</text>
+    <text x="614" y="517" text-anchor="middle" font-size="15" fill="#dbeafe">Actual anomalous flagged</text>
+  </g>
+
+  <g font-family="Arial, sans-serif" font-size="15" fill="#334155">
+    <rect x="155" y="592" width="590" height="46" rx="8" fill="#ffffff" stroke="#cbd5e1"/>
+    <text x="182" y="621">Accuracy: 0.9363</text>
+    <text x="322" y="621">Precision: 0.9965</text>
+    <text x="474" y="621">Recall: 0.9186</text>
+    <text x="596" y="621">F1: 0.9559</text>
+  </g>
+</svg>
