@@ -1,0 +1,53 @@
+{
+  "dataset_sha256": "a4e62ba13435ad3dd583c5790db2175629020fc41c56e1b26baa02a9ae45f03d",
+  "split": {
+    "seed": 0,
+    "train_benign": 11582,
+    "validation_benign": 3861,
+    "validation_anomalous": 5881,
+    "test_benign": 3861,
+    "test_anomalous": 5882
+  },
+  "selected_candidate": {
+    "n_estimators": 200,
+    "max_samples": 0.7,
+    "threshold_percentile": 1.0,
+    "threshold": -0.09681222423838094,
+    "precision": 0.9931938063637911,
+    "recall": 0.992518279204217,
+    "f1": 0.992855927878891,
+    "accuracy": 0.9913775405460891
+  },
+  "baseline_on_same_test": {
+    "n_benign": 3861,
+    "n_anomalous": 5882,
+    "threshold": -0.14801390199248468,
+    "precision": 0.9930339138405133,
+    "recall": 0.920945256715403,
+    "f1": 0.9556320014113081,
+    "accuracy": 0.9483731910089295,
+    "roc_auc": 0.9955153810135109,
+    "confusion": {
+      "tp": 5417,
+      "fp": 38,
+      "tn": 3823,
+      "fn": 465
+    }
+  },
+  "calibrated_on_same_test": {
+    "n_benign": 3861,
+    "n_anomalous": 5882,
+    "threshold": -0.09681222423838094,
+    "precision": 0.9923599320882852,
+    "recall": 0.9937096225773546,
+    "f1": 0.9930343187223921,
+    "accuracy": 0.9915837011187519,
+    "roc_auc": 0.9986006852718855,
+    "confusion": {
+      "tp": 5845,
+      "fp": 45,
+      "tn": 3816,
+      "fn": 37
+    }
+  }
+}
