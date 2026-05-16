@@ -20,7 +20,7 @@ The change is honest but no longer purely unsupervised thresholding: anomalous v
 |---|---:|---:|---|
 | Train | 11,582 | 0 | Fit Isolation Forest |
 | Validation | 3,861 | 5,881 | Select hyperparameters and threshold |
-| Test | 3,861 | 5,882 | Final old-vs-new comparison |
+| Test | 3,861 | 5,881 | Final old-vs-new comparison |
 
 Dataset SHA-256: `a4e62ba13435ad3dd583c5790db2175629020fc41c56e1b26baa02a9ae45f03d`
 
